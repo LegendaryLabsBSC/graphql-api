@@ -3,17 +3,28 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
-import { LegendnftModule } from './legendnft/legendnft.module';
+// import { LegendnftModule } from './legendnft/legendnft.module';
 import {
   EthersModule,
   InjectEthersProvider,
   StaticJsonRpcProvider,
   BNB_TESTNET_NETWORK,
 } from 'nestjs-ethers';
-
+import { LabModule } from './lab/lab.module';
+import { MatchingModule } from './matching/matching.module';
+import { MarketplaceModule } from './marketplace/marketplace.module';
+import { RejuModule } from './reju/reju.module';
+import { TokenModule } from './token/token.module';
+import { NftModule } from './nft/nft.module';
+import { ChildContractsModule } from './lab/child-contracts/child-contracts.module';
 @Module({
   imports: [
-    LegendnftModule,
+    LabModule,
+    NftModule,
+    TokenModule,
+    RejuModule,
+    MarketplaceModule,
+    MatchingModule,
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
     }),

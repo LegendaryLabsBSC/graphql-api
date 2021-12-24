@@ -1,5 +1,4 @@
 import { ObjectType, Field, InputType, ID } from '@nestjs/graphql';
-import { type } from 'os';
 
 @ObjectType('LegendType')
 @InputType('LegendTypeInput')

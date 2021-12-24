@@ -2,39 +2,23 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type LegendType {
-  id: String!
-  season: String!
-  prefix: String!
-  postfix: String!
-  parent1: String!
-  parent2: String!
-  birthday: String!
-  blendingInstancesUsed: String!
-  totalOffspring: String!
-  legendCreator: String!
-  isLegendary: String!
-  isHatched: String!
-  isDestroyed: String!
+type ChildContractsType {
+  legendsNFT: String!
+  legendToken: String!
+  legendRejuvenation: String!
+  legendsMarketplace: String!
+  legendsMatchingBoard: String!
 }
 
-input LegendTypeInput {
-  id: String!
-  season: String!
-  prefix: String!
-  postfix: String!
-  parent1: String!
-  parent2: String!
-  birthday: String!
-  blendingInstancesUsed: String!
-  totalOffspring: String!
-  legendCreator: String!
-  isLegendary: String!
-  isHatched: String!
-  isDestroyed: String!
+input ChildContractsTypeInput {
+  legendsNFT: String!
+  legendToken: String!
+  legendRejuvenation: String!
+  legendsMarketplace: String!
+  legendsMatchingBoard: String!
 }
 
 type Query {
-  findAllLegends(id: String!): LegendType!
-  foo: String!
+  getHello: String!
+  fetchChildContracts: ChildContractsType!
 }
