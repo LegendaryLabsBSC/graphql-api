@@ -16,11 +16,11 @@ export class ChildContractsService {
 
   async fetchChildContracts(): Promise<ChildContracts> {
     const contracts: ChildContracts = {
-      legendsNFT: lab.admin.legendsNFT(),
-      legendToken: lab.admin.legendToken(),
-      legendRejuvenation: lab.admin.legendRejuvenation(),
-      legendsMarketplace: lab.admin.legendsMarketplace(),
-      legendsMatchingBoard: lab.admin.legendsMatchingBoard(),
+      legendsNFT: await lab.admin.legendsNFT(),
+      legendToken: await lab.admin.legendToken(),
+      legendRejuvenation: await lab.admin.legendRejuvenation(),
+      legendsMarketplace: await lab.admin.legendsMarketplace(),
+      legendsMatchingBoard: await lab.admin.legendsMatchingBoard(),
     };
 
     return contracts;

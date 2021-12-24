@@ -10,6 +10,18 @@ type ChildContractsType {
   legendsMatchingBoard: String!
 }
 
+type PromoEventType {
+  promoName: String!
+  promoId: String!
+  startTime: String!
+  expireTime: String!
+  isUnrestricted: String!
+  isTicketLimit: String!
+  isPromoClosed: String!
+  ticketsClaimed: String!
+  ticketsRedeemed: String!
+}
+
 input ChildContractsTypeInput {
   legendsNFT: String!
   legendToken: String!
@@ -18,7 +30,20 @@ input ChildContractsTypeInput {
   legendsMatchingBoard: String!
 }
 
+input PromoEventTypeInput {
+  promoName: String!
+  promoId: String!
+  startTime: String!
+  expireTime: String!
+  isUnrestricted: String!
+  isTicketLimit: String!
+  isPromoClosed: String!
+  ticketsClaimed: String!
+  ticketsRedeemed: String!
+}
+
 type Query {
   getHello: String!
   fetchChildContracts: ChildContractsType!
+  fetchPromoEvent(id: String!): PromoEventType!
 }
