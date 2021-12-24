@@ -2,7 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type ChildContractsType {
+type ChildContracts {
   legendsNFT: String!
   legendToken: String!
   legendRejuvenation: String!
@@ -10,27 +10,7 @@ type ChildContractsType {
   legendsMatchingBoard: String!
 }
 
-type PromoEventType {
-  promoName: String!
-  promoId: String!
-  startTime: String!
-  expireTime: String!
-  isUnrestricted: String!
-  isTicketLimit: String!
-  isPromoClosed: String!
-  ticketsClaimed: String!
-  ticketsRedeemed: String!
-}
-
-input ChildContractsTypeInput {
-  legendsNFT: String!
-  legendToken: String!
-  legendRejuvenation: String!
-  legendsMarketplace: String!
-  legendsMatchingBoard: String!
-}
-
-input PromoEventTypeInput {
+type PromoEvent {
   promoName: String!
   promoId: String!
   startTime: String!
@@ -44,6 +24,6 @@ input PromoEventTypeInput {
 
 type Query {
   getHello: String!
-  fetchChildContracts: ChildContractsType!
-  fetchPromoEvent(id: String!): PromoEventType!
+  fetchChildContracts: ChildContracts!
+  fetchPromoEvent(id: String!): PromoEvent!
 }

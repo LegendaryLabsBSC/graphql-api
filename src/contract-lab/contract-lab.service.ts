@@ -1,13 +1,3 @@
-// import { Injectable } from '@nestjs/common';
-// import { InjectModel } from '@nestjs/mongoose';
-// import {
-//   InjectEthersProvider,
-//   Contract,
-//   StaticJsonRpcProvider,
-//   InjectContractProvider,
-//   EthersContract,
-// } from 'nestjs-ethers';
-
 import {
   LegendsLaboratory,
   LegendsNFT,
@@ -27,13 +17,6 @@ import {
 } from './config/contract-addresses';
 
 //todo: make dynamic for easy reusability
-
-// @Injectable()
-// export class ContractLabService {
-//   constructor(
-//     @InjectContractProvider()
-//     private readonly ethersContract: EthersContract,
-//   ) {}
 
 import { ethers, Contract } from 'ethers';
 
@@ -73,7 +56,7 @@ const matching: Contract = new ethers.Contract(
   provider,
 );
 
-export const ContractLab = {
+export const contractLab = {
   admin: admin,
   nft: nft,
   token: token,

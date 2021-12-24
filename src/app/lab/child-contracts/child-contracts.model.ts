@@ -1,8 +1,7 @@
-import { ObjectType, Field, InputType, ID } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 
-@ObjectType('ChildContractsType')
-@InputType('ChildContractsTypeInput')
-export class ChildContractsType {
+@ObjectType()
+export class ChildContracts {
   @Field()
   legendsNFT: String;
 

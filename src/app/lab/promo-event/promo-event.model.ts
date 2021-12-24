@@ -1,8 +1,7 @@
-import { ObjectType, Field, InputType, ID } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 
-@ObjectType('PromoEventType')
-@InputType('PromoEventTypeInput')
-export class PromoEventType {
+@ObjectType()
+export class PromoEvent {
   @Field()
   promoName: String;
 

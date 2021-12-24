@@ -1,12 +1,12 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
 import { PromoEventService } from './promo-event.service';
-import { PromoEventType } from './promo-event.dto';
+import { PromoEvent } from './promo-event.model';
 
 @Resolver()
 export class PromoEventResolver {
   constructor(private readonly promoEventService: PromoEventService) {}
 
-  @Query((returns) => PromoEventType)
+  @Query((returns) => PromoEvent)
   async fetchPromoEvent(@Args('id', { type: () => String }) id: string) {
     return await this.promoEventService.fetchPromoEvent(id);
   }
