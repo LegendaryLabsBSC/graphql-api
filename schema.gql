@@ -2,6 +2,39 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type LegendType {
+  id: String!
+  season: String!
+  prefix: String!
+  postfix: String!
+  parent1: String!
+  parent2: String!
+  birthday: String!
+  blendingInstancesUsed: String!
+  totalOffspring: String!
+  legendCreator: String!
+  isLegendary: String!
+  isHatched: String!
+  isDestroyed: String!
+}
+
+input LegendTypeInput {
+  id: String!
+  season: String!
+  prefix: String!
+  postfix: String!
+  parent1: String!
+  parent2: String!
+  birthday: String!
+  blendingInstancesUsed: String!
+  totalOffspring: String!
+  legendCreator: String!
+  isLegendary: String!
+  isHatched: String!
+  isDestroyed: String!
+}
+
 type Query {
+  findAllLegends(id: String!): LegendType!
   foo: String!
 }

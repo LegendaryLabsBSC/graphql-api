@@ -1,9 +1,10 @@
 import { ObjectType, Field, InputType, ID } from '@nestjs/graphql';
+import { type } from 'os';
 
-@ObjectType('Metadata')
-@InputType('MetadataInput')
-class Metadata {
-  @Field((type) => ID)
+@ObjectType('LegendType')
+@InputType('LegendTypeInput')
+export class LegendType {
+  @Field((type) => String)
   id: BigInt;
 
   @Field()
@@ -15,56 +16,56 @@ class Metadata {
   @Field()
   postfix: String;
 
-  @Field((type) => Number)
+  @Field((type) => String)
   parent1: BigInt;
 
-  @Field((type) => Number)
+  @Field((type) => String)
   parent2: BigInt;
 
-  @Field((type) => Number)
+  @Field((type) => String)
   birthday: BigInt;
 
-  @Field((type) => Number)
+  @Field((type) => String)
   blendingInstancesUsed: BigInt;
 
-  @Field((type) => Number)
+  @Field((type) => String)
   totalOffspring: BigInt;
 
   @Field()
   legendCreator: String;
 
-  @Field()
+  @Field((type) => String)
   isLegendary: Boolean;
 
-  @Field()
+  @Field((type) => String)
   isHatched: Boolean;
 
-  @Field()
+  @Field((type) => String)
   isDestroyed: Boolean;
 }
 
-@ObjectType('TokenURI')
-@InputType('TokenURIInput')
-class TokenURI {
-  @Field((type) => ID)
-  id: BigInt;
+// @ObjectType('TokenURI')
+// @InputType('TokenURIInput')
+// class TokenURI {
+//   @Field((type) => ID)
+//   id: BigInt;
 
-  @Field()
-  contentURI: String;
+//   @Field()
+//   contentURI: String;
 
-  @Field()
-  tokenIPFSPath: String;
+//   @Field()
+//   tokenIPFSPath: String;
 
-  @Field()
-  payload: String;
-}
+//   @Field()
+//   payload: String;
+// }
 
-@ObjectType('LegendType')
-@InputType('LegendInputType')
-export class LegendType {
-  @Field()
-  metadata: Metadata;
+// @ObjectType('LegendType')
+// @InputType('LegendInputType')
+// export class LegendType {
+//   @Field()
+//   metadata: Metadata;
 
-  @Field()
-  tokenuri: TokenURI;
-}
+//   @Field()
+//   tokenuri: TokenURI;
+// }
