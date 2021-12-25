@@ -3,9 +3,10 @@ import { LabService } from './lab.service';
 import { LabResolver } from './lab.resolver';
 import { ChildContractsModule } from './child-contracts/child-contracts.module';
 import { PromoEventModule } from './promo-event/promo-event.module';
+import { PromoCountsModule } from './promo-counts/promo-counts.module';
 
 @Module({
   providers: [LabService, LabResolver],
-  imports: [ChildContractsModule, PromoEventModule]
+  imports: [ChildContractsModule, PromoEventModule, PromoCountsModule]
 })
 export class LabModule {}

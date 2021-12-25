@@ -18,8 +18,9 @@ export class PromoEventService {
   async parseData(data: PromoData): Promise<PromoEvent> {
     let promoData: any = {};
 
+
     const keys = Object.keys(data).slice(9);
-    const values = `${data}`.split(',', 10);
+    const values = `${data}`.split(',');
 
     keys.forEach((value: any, index) => {
       promoData[value] = values[index];
