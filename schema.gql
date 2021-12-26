@@ -39,4 +39,5 @@ type Query {
   fetchPromoCounts: PromoCounts!
   fetchRedeemablePromoTickets(address: String!, id: String!): RedeemablePromoTickets!
   fetchAllPromoEvents(filter: String!): [PromoEvent!]!
+  fetchAllPromoTickets(address: String!): [RedeemablePromoTickets!]!
 }

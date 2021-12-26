@@ -22,12 +22,14 @@ export class AllPromoEventsService {
   }
 
   async fetchAllPromoEvents(filter: string): Promise<PromoEvent[]> {
-    let allPromos: any = [];
+    let allPromos: PromoEvent[] = [];
 
     const countsData: CountsData = await lab.admin.fetchPromoCounts();
 
     for (let i = 0; i < Number(countsData[0]); i++) {
-      const promoData: PromoData = await lab.admin.fetchPromoEvent(i + 1);
+      const promoIndex: string = (i + 1).toString();
+
+      const promoData: PromoData = await lab.admin.fetchPromoEvent(promoIndex);
 
       const promoEvent: PromoEvent = await parseData(promoData);
 

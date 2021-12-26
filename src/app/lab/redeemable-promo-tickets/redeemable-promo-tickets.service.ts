@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { RedeemablePromoTickets } from './redeemable-promo-tickets.model';
 import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
-import { PromoEvent } from '../promo-event/promo-event.model';
 
-class TicketsData {
+export class TicketsData {
   promoName: String;
   ticketsCount: BigInt;
 }

@@ -7,9 +7,10 @@ import { PromoCountsModule } from './promo-counts/promo-counts.module';
 import { LabRulesModule } from './lab-rules/lab-rules.module';
 import { RedeemablePromoTicketsModule } from './redeemable-promo-tickets/redeemable-promo-tickets.module';
 import { AllPromoEventsModule } from './all-promo-events/all-promo-events.module';
+import { AllPromoTicketsModule } from './all-promo-tickets/all-promo-tickets.module';
 
 @Module({
   providers: [LabService, LabResolver],
-  imports: [ChildContractsModule, PromoEventModule, PromoCountsModule, LabRulesModule, RedeemablePromoTicketsModule, AllPromoEventsModule]
+  imports: [ChildContractsModule, PromoEventModule, PromoCountsModule, LabRulesModule, RedeemablePromoTicketsModule, AllPromoEventsModule, AllPromoTicketsModule]
 })
 export class LabModule {}
