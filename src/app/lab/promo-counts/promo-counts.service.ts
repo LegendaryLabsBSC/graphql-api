@@ -18,8 +18,8 @@ export class PromoCountsService {
     return promoCounts;
   }
 
-  async fetchPromoCounts(): Promise<any> {
-    const countsData = await lab.admin.fetchPromoCounts();
+  async fetchPromoCounts(): Promise<CountsData> {
+    const countsData: CountsData = await lab.admin.fetchPromoCounts();
     const promoCounts: PromoCounts = await this.parseData(countsData);
 
     return promoCounts;

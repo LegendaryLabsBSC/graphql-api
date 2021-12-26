@@ -27,9 +27,15 @@ type PromoCounts {
   promosClosed: String!
 }
 
+type RedeemablePromoTickets {
+  promoName: String!
+  ticketsCount: String!
+}
+
 type Query {
   getHello: String!
   fetchChildContracts: ChildContracts!
   fetchPromoEvent(id: String!): PromoEvent!
   fetchPromoCounts: PromoCounts!
+  fetchRedeemablePromoTickets(address: String!, id: String!): RedeemablePromoTickets!
 }
