@@ -6,8 +6,8 @@ export class RedeemablePromoTickets extends PickType(PromoEvent, [
   'promoName',
 ] as const) {
   @Field()
-  promoName: String;
+  promoName: string;
 
   @Field((type) => String)
-  ticketsCount: BigInt;
+  ticketsCount: bigint;
 }

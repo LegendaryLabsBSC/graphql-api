@@ -3,8 +3,8 @@ import { ObjectType, Field } from '@nestjs/graphql';
 @ObjectType()
 export class PromoCounts {
   @Field((type) => String)
-  totalPromos: BigInt;
+  totalPromos: bigint;
 
   @Field((type) => String)
-  promosClosed: BigInt;
+  promosClosed: bigint;
 }

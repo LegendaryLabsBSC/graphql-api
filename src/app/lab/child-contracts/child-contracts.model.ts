@@ -3,17 +3,17 @@ import { ObjectType, Field } from '@nestjs/graphql';
 @ObjectType()
 export class ChildContracts {
   @Field()
-  legendsNFT: String;
+  legendsNFT: string;
 
   @Field()
-  legendToken: String;
+  legendToken: string;
 
   @Field()
-  legendRejuvenation: String;
+  legendRejuvenation: string;
 
   @Field()
-  legendsMarketplace: String;
+  legendsMarketplace: string;
 
   @Field()
-  legendsMatchingBoard: String;
+  legendsMatchingBoard: string;
 }

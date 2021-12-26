@@ -3,29 +3,29 @@ import { ObjectType, Field } from '@nestjs/graphql';
 @ObjectType()
 export class PromoEvent {
   @Field()
-  promoName: String;
+  promoName: string;
 
   @Field((type) => String)
-  promoId: BigInt;
+  promoId: bigint;
 
   @Field((type) => String)
-  startTime: BigInt;
+  startTime: bigint;
 
   @Field((type) => String)
-  expireTime: BigInt;
+  expireTime: bigint;
 
   @Field((type) => String)
-  isUnrestricted: Boolean;
+  isUnrestricted: boolean;
 
   @Field((type) => String)
-  isTicketLimit: Boolean;
+  isTicketLimit: boolean;
 
   @Field((type) => String)
-  isPromoClosed: Boolean;
+  isPromoClosed: boolean;
 
   @Field((type) => String)
-  ticketsClaimed: BigInt;
+  ticketsClaimed: bigint;
 
   @Field((type) => String)
-  ticketsRedeemed: BigInt;
+  ticketsRedeemed: bigint;
 }

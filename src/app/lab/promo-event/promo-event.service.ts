@@ -3,28 +3,28 @@ import { PromoEvent } from './promo-event.model';
 import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
 export class PromoData {
-  promoName: String;
-  promoId: BigInt;
-  startTime: BigInt;
-  expireTime: BigInt;
-  isUnrestricted: Boolean;
-  isTicketLimit: Boolean;
-  isPromoClosed: Boolean;
-  ticketsClaimed: BigInt;
-  ticketsRedeemed: BigInt;
+  promoName: string;
+  promoId: bigint;
+  startTime: bigint;
+  expireTime: bigint;
+  isUnrestricted: boolean;
+  isTicketLimit: boolean;
+  isPromoClosed: boolean;
+  ticketsClaimed: bigint;
+  ticketsRedeemed: bigint;
 }
 
 export async function parseData(data: PromoData): Promise<PromoEvent> {
-  let promoData: any = {};
+  const promoEvent: any = {};
 
   const keys = Object.keys(data).slice(9);
   const values = `${data}`.split(',');
 
-  keys.forEach((value: any, index) => {
-    promoData[value] = values[index];
+  keys.forEach((value: string, index) => {
+    promoEvent[value] = values[index];
   });
 
-  return promoData;
+  return promoEvent;
 }
 
 @Injectable()

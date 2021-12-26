@@ -3,14 +3,14 @@ import { RedeemablePromoTickets } from './redeemable-promo-tickets.model';
 import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
 export class TicketsData {
-  promoName: String;
-  ticketsCount: BigInt;
+  promoName: string;
+  ticketsCount: bigint;
 }
 
 @Injectable()
 export class RedeemablePromoTicketsService {
   async parseData(data: TicketsData): Promise<RedeemablePromoTickets> {
-    let redeemableTickets: any = {};
+    const redeemableTickets: any = {};
 
     redeemableTickets['promoName'] = data.promoName;
     redeemableTickets['ticketsCount'] = data.ticketsCount.toString();
@@ -22,9 +22,9 @@ export class RedeemablePromoTicketsService {
     id: string,
     address: string,
   ): Promise<RedeemablePromoTickets> {
-    const promoName: String = (await lab.admin.fetchPromoEvent(id)).promoName;
+    const promoName: string = (await lab.admin.fetchPromoEvent(id)).promoName;
 
-    const ticketsCount: BigInt = await lab.admin.fetchRedeemableTickets(
+    const ticketsCount: bigint = await lab.admin.fetchRedeemableTickets(
       id,
       address,
     );

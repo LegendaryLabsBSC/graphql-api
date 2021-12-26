@@ -6,7 +6,7 @@ import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
 @Injectable()
 export class AllPromoEventsService {
-  async filterData(filter: string, data: PromoEvent): Promise<Boolean> {
+  async filterData(filter: string, data: PromoEvent): Promise<boolean> {
     switch (filter) {
       case 'all':
         return true;
@@ -22,7 +22,7 @@ export class AllPromoEventsService {
   }
 
   async fetchAllPromoEvents(filter: string): Promise<PromoEvent[]> {
-    let allPromos: PromoEvent[] = [];
+    const allPromos: PromoEvent[] = [];
 
     const countsData: CountsData = await lab.admin.fetchPromoCounts();
 

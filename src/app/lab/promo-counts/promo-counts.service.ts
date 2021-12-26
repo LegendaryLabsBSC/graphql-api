@@ -3,14 +3,14 @@ import { PromoCounts } from './promo-counts.model';
 import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
 export class CountsData {
-  totalPromos: BigInt;
-  promosClosed: BigInt;
+  totalPromos: bigint;
+  promosClosed: bigint;
 }
 
 @Injectable()
 export class PromoCountsService {
   async parseData(data: CountsData): Promise<PromoCounts> {
-    let promoCounts: any = {};
+    const promoCounts: any = {};
 
     promoCounts['totalPromos'] = data[0].toString();
     promoCounts['promosClosed'] = data[1].toString();
