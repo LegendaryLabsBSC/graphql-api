@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PromoCounts } from './promo-counts.model';
 import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
-class CountsData {
+export class CountsData {
   totalPromos: BigInt;
   promosClosed: BigInt;
 }
