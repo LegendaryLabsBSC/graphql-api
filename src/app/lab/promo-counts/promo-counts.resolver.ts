@@ -1,4 +1,4 @@
-import { Resolver, Query, Args } from '@nestjs/graphql';
+import { Resolver, Query } from '@nestjs/graphql';
 import { PromoCountsService } from './promo-counts.service';
 import { PromoCounts } from './promo-counts.model';
 

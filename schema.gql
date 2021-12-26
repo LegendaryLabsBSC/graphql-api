@@ -27,6 +27,34 @@ type PromoCounts {
   promosClosed: String!
 }
 
+type BlendingRules {
+  kinBlendingLevel: String!
+  blendingLimit: String!
+  baseBlendingCost: String!
+  incubationPeriod: String!
+}
+
+type MarketplaceRules {
+  royaltyFee: String!
+  marketPlaceFee: String!
+  offerDuration: String!
+  auctionDurations: [String!]!
+  auctionExtension: String!
+}
+
+type RejuvenationRules {
+  minimumSecure: String!
+  maxMultiplier: String!
+  reJuPerBlock: String!
+  reJuNeededPerSlot: String!
+}
+
+type LabRules {
+  blendingRules: BlendingRules!
+  marketplaceRules: MarketplaceRules!
+  rejuvenationRules: RejuvenationRules!
+}
+
 type RedeemablePromoTickets {
   promoName: String!
   ticketsCount: String!
@@ -37,6 +65,7 @@ type Query {
   fetchChildContracts: ChildContracts!
   fetchPromoEvent(id: String!): PromoEvent!
   fetchPromoCounts: PromoCounts!
+  fetchLabRules: LabRules!
   fetchRedeemablePromoTickets(address: String!, id: String!): RedeemablePromoTickets!
   fetchAllPromoEvents(filter: String!): [PromoEvent!]!
   fetchAllPromoTickets(address: String!): [RedeemablePromoTickets!]!
