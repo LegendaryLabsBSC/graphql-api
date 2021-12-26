@@ -22,12 +22,16 @@ export class RedeemablePromoTicketsService {
     id: string,
     address: string,
   ): Promise<RedeemablePromoTickets> {
-    const promoName: string = (await lab.admin.fetchPromoEvent(id)).promoName;
+    let ticketsCount: bigint;
+    let promoName: string;
 
-    const ticketsCount: bigint = await lab.admin.fetchRedeemableTickets(
-      id,
-      address,
-    );
+    try {
+      ticketsCount = await lab.admin.fetchRedeemableTickets(id, address);
+      promoName = (await lab.admin.fetchPromoEvent(id)).promoName;
+    } catch (error) {
+      ticketsCount = BigInt(0);
+      promoName = 'Promo Event Closed';
+    }
 
     const redeemableTickets: RedeemablePromoTickets = await this.parseData({
       promoName,
