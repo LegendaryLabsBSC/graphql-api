@@ -32,6 +32,12 @@ type RedeemablePromoTickets {
   ticketsCount: String!
 }
 
+type AccessControlRoles {
+  DEFAULT_ADMIN_ROLE: String!
+  LAB_ADMIN: String!
+  LAB_TECH: String!
+}
+
 type MarketplaceRules {
   royaltyFee: String!
   marketPlaceFee: String!
@@ -62,6 +68,7 @@ type Query {
   fetchRedeemablePromoTickets(address: String!, id: String!): RedeemablePromoTickets!
   fetchAllPromoEvents(filter: String!): [PromoEvent!]!
   fetchAllPromoTickets(address: String!): [RedeemablePromoTickets!]!
+  fetchAccessControlRoles: AccessControlRoles!
   fetchBlendingRules: BlendingRules!
   fetchRejuvenationRules: RejuvenationRules!
   fetchMarketplaceRules: MarketplaceRules!
