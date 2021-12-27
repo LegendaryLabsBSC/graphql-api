@@ -40,8 +40,8 @@ export class LegendNFTService {
 
     const values = `${data}`.split(',', 13);
 
-    keys.forEach((value: any, index) => {
-      metadata[value] = values[index];
+    keys.forEach((key: any, index) => {
+      metadata[key] = values[index];
     });
 
     return metadata;

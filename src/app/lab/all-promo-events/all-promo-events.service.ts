@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { PromoEvent } from '../promo-event/promo-event.model';
 import { PromoEventService } from '../promo-event/promo-event.service';
-import { CountsData } from '../promo-counts/promo-counts.service';
 import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
+import { PromoCounts } from '../promo-counts/promo-counts.model';
 
 @Injectable()
 export class AllPromoEventsService {
-  constructor(private readonly promoEventService: PromoEventService) {}
+  constructor(private readonly promoEventService: PromoEventService) { }
 
   async filterData(filter: string, data: PromoEvent): Promise<boolean> {
     switch (filter) {
@@ -26,7 +26,7 @@ export class AllPromoEventsService {
   async fetchAllPromoEvents(filter: string): Promise<PromoEvent[]> {
     const allPromos: PromoEvent[] = [];
 
-    const countsData: CountsData = await lab.admin.fetchPromoCounts();
+    const countsData: PromoCounts = await lab.admin.fetchPromoCounts();
 
     for (let i = 0; i < Number(countsData[0]); i++) {
       const promoIndex: string = (i + 1).toString();

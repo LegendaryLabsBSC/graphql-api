@@ -2,14 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { RedeemablePromoTickets } from './redeemable-promo-tickets.model';
 import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
-export class TicketsData {
-  promoName: string;
-  ticketsCount: bigint;
-}
 
 @Injectable()
 export class RedeemablePromoTicketsService {
-  async parseData(data: TicketsData): Promise<RedeemablePromoTickets> {
+  async parseData(data: RedeemablePromoTickets): Promise<RedeemablePromoTickets> {
     const redeemableTickets: any = {};
 
     redeemableTickets['promoName'] = data.promoName;

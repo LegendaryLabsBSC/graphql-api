@@ -1,22 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { RedeemablePromoTickets } from '../redeemable-promo-tickets/redeemable-promo-tickets.model';
 import { RedeemablePromoTicketsService } from '../redeemable-promo-tickets/redeemable-promo-tickets.service';
-import { CountsData } from '../promo-counts/promo-counts.service';
 import { PromoEvent } from '../promo-event/promo-event.model';
 import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
+import { PromoCounts } from '../promo-counts/promo-counts.model';
 
 @Injectable()
 export class AllPromoTicketsService {
   constructor(
     private readonly redeemablePromoTicketsService: RedeemablePromoTicketsService,
-  ) {}
+  ) { }
 
   async fetchAllRedeemablePromoTickets(
     address: string,
   ): Promise<RedeemablePromoTickets[]> {
     let allPromoTickets: RedeemablePromoTickets[] = [];
 
-    const countsData: CountsData = await lab.admin.fetchPromoCounts();
+    const countsData: PromoCounts = await lab.admin.fetchPromoCounts();
 
     for (let i = 0; i < Number(countsData[0]); i++) {
       const promoIndex: string = (i + 1).toString();
