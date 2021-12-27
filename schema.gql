@@ -39,7 +39,7 @@ type AccessControlRoles {
 }
 
 type AccessControlUsers {
-  roleMembers: String!
+  roleMember: String!
 }
 
 type MarketplaceRules {

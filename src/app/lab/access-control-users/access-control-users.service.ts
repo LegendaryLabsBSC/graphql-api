@@ -6,15 +6,15 @@ import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 export class AccessControlUsersService {
 
   async parseData(totalMembers: number, roleAddress: string): Promise<AccessControlUsers[]> {
-    const roleMembers: any = {}
+    const members: any = {}
     const accessControlUsers: AccessControlUsers[] = [];
 
     for (let i = 0; i < totalMembers; i++) {
-      const roleMember: string = await lab.admin.getRoleMember(roleAddress, i)
+      const roleMember: string = await lab.admin.getRoleMember(roleAddress, i.toString())
 
-      roleMembers['roleMembers'] = roleMember
+      members['roleMember'] = roleMember
 
-      accessControlUsers.push(roleMembers)
+      accessControlUsers.push(members)
     }
 
     return accessControlUsers
