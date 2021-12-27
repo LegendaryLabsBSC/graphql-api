@@ -16,7 +16,7 @@ import { MarketplaceModule } from './marketplace/marketplace.module';
 import { RejuModule } from './reju/reju.module';
 import { TokenModule } from './token/token.module';
 import { NftModule } from './nft/nft.module';
-import { ChildContractsModule } from './lab/child-contracts/child-contracts.module';
+
 @Module({
   imports: [
     LabModule,
