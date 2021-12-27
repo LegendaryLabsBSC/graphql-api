@@ -2,39 +2,79 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type LegendType {
-  id: String!
-  season: String!
-  prefix: String!
-  postfix: String!
-  parent1: String!
-  parent2: String!
-  birthday: String!
-  blendingInstancesUsed: String!
-  totalOffspring: String!
-  legendCreator: String!
-  isLegendary: String!
-  isHatched: String!
-  isDestroyed: String!
+type ChildContracts {
+  legendsNFT: String!
+  legendToken: String!
+  legendRejuvenation: String!
+  legendsMarketplace: String!
+  legendsMatchingBoard: String!
 }
 
-input LegendTypeInput {
-  id: String!
-  season: String!
-  prefix: String!
-  postfix: String!
-  parent1: String!
-  parent2: String!
-  birthday: String!
-  blendingInstancesUsed: String!
-  totalOffspring: String!
-  legendCreator: String!
-  isLegendary: String!
-  isHatched: String!
-  isDestroyed: String!
+type PromoEvent {
+  promoName: String!
+  promoId: String!
+  startTime: String!
+  expireTime: String!
+  isUnrestricted: String!
+  isTicketLimit: String!
+  isPromoClosed: String!
+  ticketsClaimed: String!
+  ticketsRedeemed: String!
+}
+
+type PromoCounts {
+  totalPromos: String!
+  promosClosed: String!
+}
+
+type RedeemablePromoTickets {
+  promoName: String!
+  ticketsCount: String!
+}
+
+type AccessControlRoles {
+  DEFAULT_ADMIN_ROLE: String!
+  LAB_ADMIN: String!
+  LAB_TECH: String!
+}
+
+type AccessControlUsers {
+  roleMember: String!
+}
+
+type MarketplaceRules {
+  royaltyFee: String!
+  marketPlaceFee: String!
+  offerDuration: String!
+  auctionExtension: String!
+  auctionDurations: [String!]!
+}
+
+type RejuvenationRules {
+  minimumSecure: String!
+  maxMultiplier: String!
+  reJuPerBlock: String!
+  reJuNeededPerSlot: String!
+}
+
+type BlendingRules {
+  kinBlendingLevel: String!
+  blendingLimit: String!
+  baseBlendingCost: String!
+  incubationPeriod: String!
 }
 
 type Query {
-  findAllLegends(id: String!): LegendType!
-  foo: String!
+  getHello: String!
+  fetchChildContracts: ChildContracts!
+  fetchPromoEvent(id: String!): PromoEvent!
+  fetchPromoCounts: PromoCounts!
+  fetchRedeemablePromoTickets(address: String!, id: String!): RedeemablePromoTickets!
+  fetchAllPromoEvents(filter: String!): [PromoEvent!]!
+  fetchAllPromoTickets(address: String!): [RedeemablePromoTickets!]!
+  fetchAccessControlRoles: AccessControlRoles!
+  fetchAccessControlUsers(role: String!): [AccessControlUsers!]!
+  fetchBlendingRules: BlendingRules!
+  fetchRejuvenationRules: RejuvenationRules!
+  fetchMarketplaceRules: MarketplaceRules!
 }

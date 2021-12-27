@@ -2,7 +2,7 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { LegendNFT, LegendNFTDocument } from './legendnft.schema';
-import { ContractLab as lab } from 'src/contract-lab/contract-lab.service';
+import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
 //todo: reduce
 interface LegendMetadata {
@@ -40,8 +40,8 @@ export class LegendNFTService {
 
     const values = `${data}`.split(',', 13);
 
-    keys.forEach((value: any, index) => {
-      metadata[value] = values[index];
+    keys.forEach((key: any, index) => {
+      metadata[key] = values[index];
     });
 
     return metadata;
