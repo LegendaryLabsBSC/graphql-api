@@ -8,6 +8,6 @@ export class AccessControlRolesResolver {
 
   @Query((returns) => AccessControlRoles)
   async fetchAccessControlRoles() {
-    return this.accessControlRolesService.fetchAccessControlRoles();
+    return await this.accessControlRolesService.fetchAccessControlRoles();
   }
 }

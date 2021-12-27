@@ -8,6 +8,7 @@ import { RedeemablePromoTicketsModule } from './redeemable-promo-tickets/redeema
 import { AllPromoEventsModule } from './all-promo-events/all-promo-events.module';
 import { AllPromoTicketsModule } from './all-promo-tickets/all-promo-tickets.module';
 import { AccessControlRolesModule } from './access-control-roles/access-control-roles.module';
+import { AccessControlUsersModule } from './access-control-users/access-control-users.module';
 
 @Module({
   providers: [LabService, LabResolver],
@@ -18,7 +19,8 @@ import { AccessControlRolesModule } from './access-control-roles/access-control-
     RedeemablePromoTicketsModule,
     AllPromoEventsModule,
     AllPromoTicketsModule,
-    AccessControlRolesModule
+    AccessControlRolesModule,
+    AccessControlUsersModule
   ]
 })
 export class LabModule { }

@@ -6,12 +6,12 @@ import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 export class AccessControlRolesService {
 
   async fetchAccessControlRoles(): Promise<AccessControlRoles> {
-    const contracts: AccessControlRoles = {
+    const accessControlRoles: AccessControlRoles = {
       DEFAULT_ADMIN_ROLE: await lab.admin.DEFAULT_ADMIN_ROLE(),
       LAB_ADMIN: await lab.admin.LAB_ADMIN(),
       LAB_TECH: await lab.admin.LAB_TECH(),
     };
 
-    return contracts;
+    return accessControlRoles;
   }
 }

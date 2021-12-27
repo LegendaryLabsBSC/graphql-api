@@ -38,6 +38,10 @@ type AccessControlRoles {
   LAB_TECH: String!
 }
 
+type AccessControlUsers {
+  roleMembers: String!
+}
+
 type MarketplaceRules {
   royaltyFee: String!
   marketPlaceFee: String!
@@ -69,6 +73,7 @@ type Query {
   fetchAllPromoEvents(filter: String!): [PromoEvent!]!
   fetchAllPromoTickets(address: String!): [RedeemablePromoTickets!]!
   fetchAccessControlRoles: AccessControlRoles!
+  fetchAccessControlUsers(role: String!): [AccessControlUsers!]!
   fetchBlendingRules: BlendingRules!
   fetchRejuvenationRules: RejuvenationRules!
   fetchMarketplaceRules: MarketplaceRules!
