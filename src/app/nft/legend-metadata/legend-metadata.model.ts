@@ -3,47 +3,47 @@ import { ObjectType, Field } from '@nestjs/graphql';
 @ObjectType()
 export class LegendMetadata {
   @Field((type) => String)
-  id: BigInt;
+  id: bigint;
 
   @Field()
-  season: String;
+  season: string;
 
   @Field()
-  prefix: String;
+  prefix: string;
 
   @Field()
-  postfix: String;
+  postfix: string;
 
   // @Field((type) => [String])
-  // parents: [BigInt];
+  // parents: [bigint];
 
 
   @Field((type) => String)
-  parent1: BigInt;
+  parent1: bigint;
 
   @Field((type) => String)
-  parent2: BigInt;
+  parent2: bigint;
 
   @Field((type) => String)
-  birthday: BigInt;
+  birthday: bigint;
 
   @Field((type) => String)
-  blendingInstancesUsed: BigInt;
+  blendingInstancesUsed: bigint;
 
   @Field((type) => String)
-  totalOffspring: BigInt;
+  totalOffspring: bigint;
 
   @Field()
-  legendCreator: String;
+  legendCreator: string;
 
   @Field((type) => String)
-  isLegendary: Boolean;
+  isLegendary: boolean;
 
   @Field((type) => String)
-  isHatched: Boolean;
+  isHatched: boolean;
 
   @Field((type) => String)
-  isDestroyed: Boolean;
+  isDestroyed: boolean;
 }
 
 // @ObjectType('TokenURI')

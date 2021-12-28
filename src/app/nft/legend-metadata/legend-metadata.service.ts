@@ -47,8 +47,6 @@ export class LegendMetadataService {
       return this.nonExistentLegend
     }
 
-
-
     const legendMetadata: LegendMetadata = this.parseData(legendData);
 
     return legendMetadata;

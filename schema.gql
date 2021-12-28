@@ -80,6 +80,12 @@ type LegendMetadata {
   isDestroyed: String!
 }
 
+type LegendURI {
+  id: String!
+  image: String!
+  payload: String!
+}
+
 type Query {
   getHello: String!
   fetchChildContracts: ChildContracts!
@@ -92,6 +98,7 @@ type Query {
   fetchAccessControlUsers(role: String!): [AccessControlUsers!]!
   fetchBlendingRules: BlendingRules!
   legendMetadata(id: String!): LegendMetadata!
+  legendURI(id: String!): LegendURI!
   fetchRejuvenationRules: RejuvenationRules!
   fetchMarketplaceRules: MarketplaceRules!
 }

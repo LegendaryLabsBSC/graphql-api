@@ -19,8 +19,10 @@ export async function parseData(data: PromoEvent): Promise<PromoEvent> {
 @Injectable()
 export class PromoEventService {
   async fetchPromoEvent(id: string): Promise<PromoEvent> {
-    const promoData: PromoEvent = await lab.admin.fetchPromoEvent(id);
-    const promoEvent: PromoEvent = await parseData(promoData);
+    let promoEvent: PromoEvent
+
+    promoEvent = await lab.admin.fetchPromoEvent(id);
+    promoEvent = await parseData(promoEvent);
 
     return promoEvent;
   }
