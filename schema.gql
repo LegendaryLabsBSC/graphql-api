@@ -88,6 +88,7 @@ type LegendURI {
 
 type LegendNFT {
   id: String!
+  image: String!
   season: String!
   prefix: String!
   postfix: String!
@@ -100,10 +101,6 @@ type LegendNFT {
   isLegendary: String!
   isHatched: String!
   isDestroyed: String!
-  image: String!
-  payload: String!
-  metadata: LegendMetadata!
-  uri: LegendURI!
 }
 
 type Query {
@@ -117,6 +114,8 @@ type Query {
   fetchAccessControlRoles: AccessControlRoles!
   fetchAccessControlUsers(role: String!): [AccessControlUsers!]!
   fetchBlendingRules: BlendingRules!
+  legendMetadata(id: String!): LegendMetadata!
+  legendURI(id: String!): LegendURI!
   legendNFT(id: String!): LegendNFT!
   fetchRejuvenationRules: RejuvenationRules!
   fetchMarketplaceRules: MarketplaceRules!

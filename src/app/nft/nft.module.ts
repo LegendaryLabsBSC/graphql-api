@@ -10,8 +10,8 @@ import { LegendNFTModule } from './legend-nft/legend-nft.module';
   providers: [NFTService, NFTResolver],
   imports: [
     BlendingRulesModule,
-    // LegendMetadataModule,
-    // LegendURIModule,
+    LegendMetadataModule,
+    LegendURIModule,
     LegendNFTModule,
   ],
 })
