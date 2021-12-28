@@ -64,6 +64,22 @@ type BlendingRules {
   incubationPeriod: String!
 }
 
+type LegendMetadata {
+  id: String!
+  season: String!
+  prefix: String!
+  postfix: String!
+  parent1: String!
+  parent2: String!
+  birthday: String!
+  blendingInstancesUsed: String!
+  totalOffspring: String!
+  legendCreator: String!
+  isLegendary: String!
+  isHatched: String!
+  isDestroyed: String!
+}
+
 type Query {
   getHello: String!
   fetchChildContracts: ChildContracts!
@@ -75,6 +91,7 @@ type Query {
   fetchAccessControlRoles: AccessControlRoles!
   fetchAccessControlUsers(role: String!): [AccessControlUsers!]!
   fetchBlendingRules: BlendingRules!
+  legendMetadata(id: String!): LegendMetadata!
   fetchRejuvenationRules: RejuvenationRules!
   fetchMarketplaceRules: MarketplaceRules!
 }

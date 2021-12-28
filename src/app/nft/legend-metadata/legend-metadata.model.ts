@@ -1,8 +1,7 @@
-import { ObjectType, Field, InputType, ID } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 
-@ObjectType('LegendType')
-@InputType('LegendTypeInput')
-export class LegendType {
+@ObjectType()
+export class LegendMetadata {
   @Field((type) => String)
   id: BigInt;
 
@@ -14,6 +13,10 @@ export class LegendType {
 
   @Field()
   postfix: String;
+
+  // @Field((type) => [String])
+  // parents: [BigInt];
+
 
   @Field((type) => String)
   parent1: BigInt;
