@@ -16,7 +16,7 @@ export class LegendNFTService {
   async fetchLegendNFT(id: string): Promise<LegendNFT> {
     const legendMetadata: LegendMetadata =
       await this.legendMetadataService.fetchLegendMetadata(id);
-      
+
     const legendURI: LegendURI = await this.legendURIService.fetchLegendURI(id);
 
     const legendNFT = { ...legendMetadata, ...legendURI };
@@ -24,14 +24,19 @@ export class LegendNFTService {
     return legendNFT;
   }
 
-  // async fetchAllLegendNFTs(filter: string): Promise<LegendNFT[]> {
-  //   const legendNFT: any = {};
+  async fetchAllLegendNFTs(filter: string): Promise<LegendNFT[]> {
+    const allLegends: LegendNFT[] = [];
 
-  //   legendNFT['metadata'] =
-  //     await this.legendMetadataService.fetchLegendMetadata(id);
+    const totalSupply: bigint = await lab.nft.totalSupply();
 
-  //   legendNFT['uri'] = await this.legendURIService.fetchLegendURI(id);
+    for (let i = 1; i < Number(totalSupply); i++) {
+      const legendIndex: string = (i + 1).toString(); //! todo: make correct when new contracts deployed 
 
-  //   return legendNFT;
-  // }
+      const legendNFT = await this.fetchLegendNFT(legendIndex);
+
+      allLegends.push(legendNFT);
+    }
+
+    return allLegends;
+  }
 }

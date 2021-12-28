@@ -11,8 +11,8 @@ export class LegendNFTResolver {
     return await this.legendNFTService.fetchLegendNFT(id);
   }
 
-  // @Query((returns) => [LegendNFT])
-  // async allLegendNFTs(@Args('filter', { type: () => String }) filter: string) {
-  //   return await this.legendNFTService.fetchAllLegendNFTs(filter);
-  // }
+  @Query((returns) => [LegendNFT])
+  async allLegendNFTs(@Args('filter', { type: () => String }) filter: string) {
+    return await this.legendNFTService.fetchAllLegendNFTs(filter);
+  }
 }
