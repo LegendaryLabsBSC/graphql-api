@@ -86,6 +86,26 @@ type LegendURI {
   payload: String!
 }
 
+type LegendNFT {
+  id: String!
+  season: String!
+  prefix: String!
+  postfix: String!
+  parent1: String!
+  parent2: String!
+  birthday: String!
+  blendingInstancesUsed: String!
+  totalOffspring: String!
+  legendCreator: String!
+  isLegendary: String!
+  isHatched: String!
+  isDestroyed: String!
+  image: String!
+  payload: String!
+  metadata: LegendMetadata!
+  uri: LegendURI!
+}
+
 type Query {
   getHello: String!
   fetchChildContracts: ChildContracts!
@@ -97,8 +117,7 @@ type Query {
   fetchAccessControlRoles: AccessControlRoles!
   fetchAccessControlUsers(role: String!): [AccessControlUsers!]!
   fetchBlendingRules: BlendingRules!
-  legendMetadata(id: String!): LegendMetadata!
-  legendURI(id: String!): LegendURI!
+  legendNFT(id: String!): LegendNFT!
   fetchRejuvenationRules: RejuvenationRules!
   fetchMarketplaceRules: MarketplaceRules!
 }
