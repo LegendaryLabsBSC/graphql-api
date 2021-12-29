@@ -11,13 +11,3 @@ export class LegendURI {
   @Field()
   payload: string;
 }
-
-// @ObjectType('LegendType')
-// @InputType('LegendInputType')
-// export class LegendType {
-//   @Field()
-//   metadata: Metadata;
-
-//   @Field()
-//   tokenuri: TokenURI;
-// }

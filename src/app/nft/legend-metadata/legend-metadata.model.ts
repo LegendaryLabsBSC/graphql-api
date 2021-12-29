@@ -46,28 +46,3 @@ export class LegendMetadata {
   isDestroyed: boolean;
 }
 
-// @ObjectType('TokenURI')
-// @InputType('TokenURIInput')
-// class TokenURI {
-//   @Field((type) => ID)
-//   id: BigInt;
-
-//   @Field()
-//   contentURI: String;
-
-//   @Field()
-//   tokenIPFSPath: String;
-
-//   @Field()
-//   payload: String;
-// }
-
-// @ObjectType('LegendType')
-// @InputType('LegendInputType')
-// export class LegendType {
-//   @Field()
-//   metadata: Metadata;
-
-//   @Field()
-//   tokenuri: TokenURI;
-// }

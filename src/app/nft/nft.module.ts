@@ -5,6 +5,7 @@ import { BlendingRulesModule } from './blending-rules/blending-rules.module';
 import { LegendMetadataModule } from './legend-metadata/legend-metadata.module';
 import { LegendURIModule } from './legend-uri/legend-uri.module';
 import { LegendNFTModule } from './legend-nft/legend-nft.module';
+import { IncubationViewsModule } from './incubation-views/incubation-views.module';
 
 @Module({
   providers: [NFTService, NFTResolver],
@@ -13,6 +14,7 @@ import { LegendNFTModule } from './legend-nft/legend-nft.module';
     LegendMetadataModule,
     LegendURIModule,
     LegendNFTModule,
+    IncubationViewsModule,
   ],
 })
 export class NFTModule {}

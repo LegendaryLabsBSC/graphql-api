@@ -103,6 +103,14 @@ type LegendNFT {
   isDestroyed: String!
 }
 
+type IncubationViews {
+  incubationView1: String!
+  incubationView2: String!
+  incubationView3: String!
+  incubationView4: String!
+  incubationView5: String!
+}
+
 type Query {
   getHello: String!
   childContracts: ChildContracts!
@@ -119,6 +127,7 @@ type Query {
   legendNFT(id: String!): LegendNFT!
   allLegendNFTs(filter: String!): [LegendNFT!]!
   legendNFTsByOwner(address: String!): [LegendNFT!]!
+  incubationViews: IncubationViews!
   rejuvenationRules: RejuvenationRules!
   marketplaceRules: MarketplaceRules!
 }
