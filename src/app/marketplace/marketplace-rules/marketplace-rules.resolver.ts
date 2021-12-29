@@ -7,7 +7,7 @@ export class MarketplaceRulesResolver {
   constructor(private readonly marketplaceRulesService: MarketplaceRulesService) { }
 
   @Query((returns) => MarketplaceRules)
-  async fetchMarketplaceRules() {
+  async marketplaceRules() {
     return await this.marketplaceRulesService.fetchMarketplaceRules();
   }
 }

@@ -7,7 +7,7 @@ export class AccessControlUsersResolver {
   constructor(private readonly accessControlUsersService: AccessControlUsersService) { }
 
   @Query((returns) => [AccessControlUsers])
-  async fetchAccessControlUsers(@Args('role', { type: () => String }) role: string) {
+  async accessControlUsers(@Args('role', { type: () => String }) role: string) {
     return await this.accessControlUsersService.fetchAccessControlUsers(role) || [];
   }
 }

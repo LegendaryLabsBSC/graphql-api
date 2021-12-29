@@ -7,7 +7,7 @@ export class RejuvenationRulesResolver {
   constructor(private readonly rejuvenationRulesService: RejuvenationRulesService) { }
 
   @Query((returns) => RejuvenationRules)
-  async fetchRejuvenationRules() {
+  async rejuvenationRules() {
     return await this.rejuvenationRulesService.fetchRejuvenationRules();
   }
 }

@@ -29,7 +29,6 @@ export class LegendURIService {
     try {
       const URIData: string = await lab.nft.fetchLegendURI(id);
       const legendURI: LegendURI = this.parseData(URIData);
-      // console.log(URIData);
 
       return legendURI;
     } catch (error) {

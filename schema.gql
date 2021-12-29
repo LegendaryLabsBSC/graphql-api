@@ -105,20 +105,20 @@ type LegendNFT {
 
 type Query {
   getHello: String!
-  fetchChildContracts: ChildContracts!
-  fetchPromoEvent(id: String!): PromoEvent!
-  fetchAllPromoEvents(filter: String!): [PromoEvent!]!
-  fetchPromoCounts: PromoCounts!
-  fetchRedeemablePromoTickets(address: String!, id: String!): RedeemablePromoTickets!
-  fetchAllPromoTickets(address: String!): [RedeemablePromoTickets!]!
-  fetchAccessControlRoles: AccessControlRoles!
-  fetchAccessControlUsers(role: String!): [AccessControlUsers!]!
-  fetchBlendingRules: BlendingRules!
+  childContracts: ChildContracts!
+  promoEvent(id: String!): PromoEvent!
+  allPromoEvents(filter: String!): [PromoEvent!]!
+  promoCounts: PromoCounts!
+  redeemablePromoTickets(address: String!, id: String!): RedeemablePromoTickets!
+  allPromoTicketsByUser(address: String!): [RedeemablePromoTickets!]!
+  accessControlRoles: AccessControlRoles!
+  accessControlUsers(role: String!): [AccessControlUsers!]!
+  blendingRules: BlendingRules!
   legendMetadata(id: String!): LegendMetadata!
   legendURI(id: String!): LegendURI!
   legendNFT(id: String!): LegendNFT!
   allLegendNFTs(filter: String!): [LegendNFT!]!
   legendNFTsByOwner(address: String!): [LegendNFT!]!
-  fetchRejuvenationRules: RejuvenationRules!
-  fetchMarketplaceRules: MarketplaceRules!
+  rejuvenationRules: RejuvenationRules!
+  marketplaceRules: MarketplaceRules!
 }

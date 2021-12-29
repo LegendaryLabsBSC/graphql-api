@@ -7,7 +7,7 @@ export class ChildContractsResolver {
   constructor(private readonly childContractsService: ChildContractsService) {}
 
   @Query((returns) => ChildContracts)
-  async fetchChildContracts() {
+  async childContracts() {
     return this.childContractsService.fetchChildContracts();
   }
 }

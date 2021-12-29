@@ -7,7 +7,7 @@ export class AccessControlRolesResolver {
   constructor(private readonly accessControlRolesService: AccessControlRolesService) {}
 
   @Query((returns) => AccessControlRoles)
-  async fetchAccessControlRoles() {
+  async accessControlRoles() {
     return await this.accessControlRolesService.fetchAccessControlRoles();
   }
 }

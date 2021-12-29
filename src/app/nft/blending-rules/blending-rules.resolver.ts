@@ -7,7 +7,7 @@ export class BlendingRulesResolver {
   constructor(private readonly blendingRulesService: BlendingRulesService) {}
 
   @Query((returns) => BlendingRules)
-  async fetchBlendingRules() {
+  async blendingRules() {
     return await this.blendingRulesService.fetchBlendingRules();
   }
 }
