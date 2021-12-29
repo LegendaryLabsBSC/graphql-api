@@ -4,8 +4,8 @@ import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
 @Injectable()
 export class RejuvenationRulesService {
-  async parseData(data: RejuvenationRules): Promise<RejuvenationRules> {
-    const rejuvenationRules: any = {}
+  parseData(data: RejuvenationRules): RejuvenationRules {
+    const rejuvenationRules: any = {};
 
     rejuvenationRules['minimumSecure'] = data[0].toString();
     rejuvenationRules['maxMultiplier'] = data[1].toString();
@@ -16,8 +16,9 @@ export class RejuvenationRulesService {
   }
 
   async fetchRejuvenationRules(): Promise<RejuvenationRules> {
-    const rulesData: RejuvenationRules = await lab.reju.fetchRejuvenationRules()
-    const rejuvenationRules: RejuvenationRules = await this.parseData(rulesData);
+    const rulesData: RejuvenationRules =
+      await lab.reju.fetchRejuvenationRules();
+    const rejuvenationRules: RejuvenationRules = this.parseData(rulesData);
 
     return rejuvenationRules;
   }

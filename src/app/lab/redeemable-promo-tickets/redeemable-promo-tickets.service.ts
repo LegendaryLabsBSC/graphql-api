@@ -6,9 +6,7 @@ import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
 @Injectable()
 export class RedeemablePromoTicketsService {
-  async parseData(
-    data: RedeemablePromoTickets,
-  ): Promise<RedeemablePromoTickets> {
+  parseData(data: RedeemablePromoTickets): RedeemablePromoTickets {
     const redeemableTickets: any = {};
 
     redeemableTickets['promoName'] = data.promoName;
@@ -32,7 +30,7 @@ export class RedeemablePromoTicketsService {
       promoName = 'Promo Event Closed';
     }
 
-    const redeemableTickets: RedeemablePromoTickets = await this.parseData({
+    const redeemableTickets: RedeemablePromoTickets = this.parseData({
       promoName,
       ticketsCount,
     });

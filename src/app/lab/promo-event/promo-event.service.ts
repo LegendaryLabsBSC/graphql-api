@@ -5,7 +5,7 @@ import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
 @Injectable()
 export class PromoEventService {
-  async parseData(data: PromoEvent): Promise<PromoEvent> {
+  parseData(data: PromoEvent): PromoEvent {
     const promoEvent: any = {};
 
     const keys = Object.keys(data).slice(9);
@@ -22,12 +22,12 @@ export class PromoEventService {
     let promoEvent: PromoEvent;
 
     promoEvent = await lab.admin.fetchPromoEvent(id);
-    promoEvent = await this.parseData(promoEvent);
+    promoEvent = this.parseData(promoEvent);
 
     return promoEvent;
   }
 
-  async filterData(filter: string, data: PromoEvent): Promise<boolean> {
+  filterData(filter: string, data: PromoEvent): boolean {
     switch (filter) {
       case 'all':
         return true;
@@ -52,7 +52,7 @@ export class PromoEventService {
 
       const promoEvent: PromoEvent = await this.fetchPromoEvent(promoIndex);
 
-      if ((await this.filterData(filter, promoEvent)) === true)
+      if (this.filterData(filter, promoEvent) === true)
         allPromos.push(promoEvent);
     }
 
