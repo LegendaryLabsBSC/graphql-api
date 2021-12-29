@@ -50,7 +50,7 @@ export class LegendNFTService {
     const balance: bigint = await lab.nft.balanceOf(verifiedAddress);
     // todo: handle 0 balance
 
-    for (let i = 0; i < Number(balance); i++) {
+    for (let i = 0; i < balance; i++) {
       const legendId: string = (
         await lab.nft.tokenOfOwnerByIndex(account, `${i}`)
       ).toString();

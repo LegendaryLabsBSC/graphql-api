@@ -24,6 +24,8 @@ export class LegendMetadataService {
   parseData(data: LegendMetadata): LegendMetadata {
     const metadata: any = {};
 
+    //todo: convert birthday to calendar date
+
     const keys = Object.keys(data).slice(12, 24);
     keys.splice(4, 1, 'parent1', 'parent2');
 
