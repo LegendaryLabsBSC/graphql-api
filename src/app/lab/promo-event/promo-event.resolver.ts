@@ -10,4 +10,11 @@ export class PromoEventResolver {
   async fetchPromoEvent(@Args('id', { type: () => String }) id: string) {
     return await this.promoEventService.fetchPromoEvent(id);
   }
+
+  @Query((returns) => [PromoEvent])
+  async fetchAllPromoEvents(
+    @Args('filter', { type: () => String }) filter: string,
+  ) {
+    return (await this.promoEventService.fetchAllPromoEvents(filter)) || [];
+  }
 }

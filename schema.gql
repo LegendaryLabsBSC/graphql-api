@@ -107,9 +107,9 @@ type Query {
   getHello: String!
   fetchChildContracts: ChildContracts!
   fetchPromoEvent(id: String!): PromoEvent!
+  fetchAllPromoEvents(filter: String!): [PromoEvent!]!
   fetchPromoCounts: PromoCounts!
   fetchRedeemablePromoTickets(address: String!, id: String!): RedeemablePromoTickets!
-  fetchAllPromoEvents(filter: String!): [PromoEvent!]!
   fetchAllPromoTickets(address: String!): [RedeemablePromoTickets!]!
   fetchAccessControlRoles: AccessControlRoles!
   fetchAccessControlUsers(role: String!): [AccessControlUsers!]!

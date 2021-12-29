@@ -18,4 +18,15 @@ export class RedeemablePromoTicketsResolver {
       address,
     );
   }
+
+  @Query((returns) => [RedeemablePromoTickets])
+  async fetchAllPromoTickets(
+    @Args('address', { type: () => String }) address: string,
+  ) {
+    return (
+      (await this.redeemableTicketsService.fetchAllRedeemablePromoTickets(
+        address,
+      )) || []
+    );
+  }
 }

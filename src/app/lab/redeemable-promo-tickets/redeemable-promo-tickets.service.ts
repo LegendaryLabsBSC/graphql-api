@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { RedeemablePromoTickets } from './redeemable-promo-tickets.model';
+import { PromoCounts } from '../promo-counts/promo-counts.model';
+import { PromoEvent } from '../promo-event/promo-event.model';
 import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
-
 
 @Injectable()
 export class RedeemablePromoTicketsService {
-  async parseData(data: RedeemablePromoTickets): Promise<RedeemablePromoTickets> {
+  async parseData(
+    data: RedeemablePromoTickets,
+  ): Promise<RedeemablePromoTickets> {
     const redeemableTickets: any = {};
 
     redeemableTickets['promoName'] = data.promoName;
@@ -35,5 +38,32 @@ export class RedeemablePromoTicketsService {
     });
 
     return redeemableTickets;
+  }
+
+  async fetchAllRedeemablePromoTickets(
+    address: string,
+  ): Promise<RedeemablePromoTickets[]> {
+    let allPromoTickets: RedeemablePromoTickets[] = [];
+
+    const countsData: PromoCounts = await lab.admin.fetchPromoCounts();
+
+    for (let i = 0; i < Number(countsData[0]); i++) {
+      const promoIndex: string = (i + 1).toString();
+
+      const promoEvent: PromoEvent = await lab.admin.fetchPromoEvent(
+        promoIndex,
+      );
+
+      const isPromoClosed: boolean = promoEvent.isPromoClosed;
+
+      if (isPromoClosed === false) {
+        const redeemableTickets: RedeemablePromoTickets =
+          await this.fetchRedeemablePromoTickets(promoIndex, address);
+
+        allPromoTickets.push(redeemableTickets);
+      }
+    }
+
+    return allPromoTickets;
   }
 }
