@@ -118,6 +118,7 @@ type Query {
   legendURI(id: String!): LegendURI!
   legendNFT(id: String!): LegendNFT!
   allLegendNFTs(filter: String!): [LegendNFT!]!
+  legendNFTsByOwner(address: String!): [LegendNFT!]!
   fetchRejuvenationRules: RejuvenationRules!
   fetchMarketplaceRules: MarketplaceRules!
 }
