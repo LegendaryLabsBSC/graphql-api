@@ -7,18 +7,18 @@ export class LegendNFTResolver {
   constructor(private readonly legendNFTService: LegendNFTService) {}
 
   @Query((returns) => LegendNFT)
-  async legendNFT(@Args('id', { type: () => String }) id: string) {
+  async legendNFT(@Args('id') id: string) {
     return await this.legendNFTService.fetchLegendNFT(id);
   }
 
   @Query((returns) => [LegendNFT])
-  async allLegendNFTs(@Args('filter', { type: () => String }) filter: string) {
+  async allLegendNFTs(@Args('filter') filter: string) {
     return (await this.legendNFTService.fetchAllLegendNFTs(filter)) || [];
   }
 
   @Query((returns) => [LegendNFT])
   async legendNFTsByOwner(
-    @Args('address', { type: () => String }) address: string,
+    @Args('address') address: string,
   ) {
     return (await this.legendNFTService.fetchLegendNFTsByOwner(address)) || [];
   }

@@ -8,8 +8,8 @@ export class IsListableResolver {
 
   @Query((returns) => IsListable)
   async isListable(
-    @Args('id', { type: () => String }) id: string,
-    @Args('address', { type: () => String }) address: string,
+    @Args('id') id: string,
+    @Args('address') address: string,
   ) {
     return await this.isListableService.fetchIsListable(id, address);
   }

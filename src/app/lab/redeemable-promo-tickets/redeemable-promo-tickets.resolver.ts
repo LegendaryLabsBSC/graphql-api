@@ -10,8 +10,8 @@ export class RedeemablePromoTicketsResolver {
 
   @Query((returns) => RedeemablePromoTickets)
   async redeemablePromoTickets(
-    @Args('id', { type: () => String }) id: string,
-    @Args('address', { type: () => String }) address: string,
+    @Args('id') id: string,
+    @Args('address') address: string,
   ) {
     return await this.redeemableTicketsService.fetchRedeemablePromoTickets(
       id,
@@ -21,7 +21,7 @@ export class RedeemablePromoTicketsResolver {
 
   @Query((returns) => [RedeemablePromoTickets])
   async allPromoTicketsByUser(
-    @Args('address', { type: () => String }) address: string,
+    @Args('address') address: string,
   ) {
     return (
       (await this.redeemableTicketsService.fetchAllRedeemablePromoTickets(

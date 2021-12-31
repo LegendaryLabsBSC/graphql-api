@@ -131,6 +131,11 @@ type BlendingSlotsUsed {
   figure: String!
 }
 
+type BlendingCost {
+  cost: String!
+  ezCost: String
+}
+
 type Query {
   getHello: String!
   childContracts: ChildContracts!
@@ -152,6 +157,7 @@ type Query {
   isBlendable(id: String!): IsBlendable!
   isListable(address: String!, id: String!): IsListable!
   blendingSlotsUsed(id: String!): BlendingSlotsUsed!
+  blendingCost(p2: String, p1: String!): BlendingCost!
   rejuvenationRules: RejuvenationRules!
   marketplaceRules: MarketplaceRules!
 }
