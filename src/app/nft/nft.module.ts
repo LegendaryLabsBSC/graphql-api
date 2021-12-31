@@ -12,6 +12,7 @@ import { IsListableModule } from './is-listable/is-listable.module';
 import { BlendingSlotsUsedModule } from './blending-slots-used/blending-slots-used.module';
 import { BlendingCostModule } from './blending-cost/blending-cost.module';
 import { TotalNFTSupplyModule } from './total-nft-supply/total-nft-supply.module';
+import { OwnerOfLegendModule } from './owner-of-legend/owner-of-legend.module';
 
 @Module({
   providers: [NFTService, NFTResolver],
@@ -27,6 +28,7 @@ import { TotalNFTSupplyModule } from './total-nft-supply/total-nft-supply.module
     BlendingSlotsUsedModule,
     BlendingCostModule,
     TotalNFTSupplyModule,
+    OwnerOfLegendModule
   ],
 })
 export class NFTModule {}

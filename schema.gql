@@ -141,6 +141,10 @@ type TotalNFTSupply {
   total: String!
 }
 
+type OwnerOfLegend {
+  address: String!
+}
+
 type Query {
   getHello: String!
   childContracts: ChildContracts!
@@ -164,6 +168,7 @@ type Query {
   blendingSlotsUsed(id: String!): BlendingSlotsUsed!
   blendingCost(p2: String, p1: String!): BlendingCost!
   totalNFTSupply: TotalNFTSupply!
+  ownerOfLegend(id: String!): OwnerOfLegend!
   rejuvenationRules: RejuvenationRules!
   marketplaceRules: MarketplaceRules!
 }
