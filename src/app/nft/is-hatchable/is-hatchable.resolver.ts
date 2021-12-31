@@ -1,5 +1,5 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
-import { IsHatchableService } from './is-hatchable..service';
+import { IsHatchableService } from './is-hatchable.service';
 import { IsHatchable } from './is-hatchable.model';
 
 @Resolver()

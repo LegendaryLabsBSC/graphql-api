@@ -115,6 +115,11 @@ type IsHatchable {
   isHatchable: Boolean!
 }
 
+type IsBlendable {
+  isBlendable: Boolean!
+  unableReason: String
+}
+
 type Query {
   getHello: String!
   childContracts: ChildContracts!
@@ -133,6 +138,7 @@ type Query {
   legendNFTsByOwner(address: String!): [LegendNFT!]!
   incubationViews: IncubationViews!
   isHatchable(id: String!): IsHatchable!
+  isBlendable(id: String!): IsBlendable!
   rejuvenationRules: RejuvenationRules!
   marketplaceRules: MarketplaceRules!
 }
