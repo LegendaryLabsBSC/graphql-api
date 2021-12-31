@@ -125,6 +125,12 @@ type IsListable {
   unableReason: String
 }
 
+type BlendingSlotsUsed {
+  blendingSlotsUsed: String!
+  maxBlendingSlotsUsed: String!
+  figure: String!
+}
+
 type Query {
   getHello: String!
   childContracts: ChildContracts!
@@ -145,6 +151,7 @@ type Query {
   isHatchable(id: String!): IsHatchable!
   isBlendable(id: String!): IsBlendable!
   isListable(address: String!, id: String!): IsListable!
+  blendingSlotsUsed(id: String!): BlendingSlotsUsed!
   rejuvenationRules: RejuvenationRules!
   marketplaceRules: MarketplaceRules!
 }

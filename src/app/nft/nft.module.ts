@@ -9,6 +9,7 @@ import { IncubationViewsModule } from './incubation-views/incubation-views.modul
 import { IsHatchableModule } from './is-hatchable/is-hatchable.module';
 import { IsBlendableModule } from './is-blendable/is-blendable.module';
 import { IsListableModule } from './is-listable/is-listable.module';
+import { BlendingSlotsUsedModule } from './blending-slots-used/blending-slots-used.module';
 
 @Module({
   providers: [NFTService, NFTResolver],
@@ -21,6 +22,7 @@ import { IsListableModule } from './is-listable/is-listable.module';
     IsHatchableModule,
     IsBlendableModule,
     IsListableModule,
+    BlendingSlotsUsedModule,
   ],
 })
 export class NFTModule {}
