@@ -145,6 +145,10 @@ type OwnerOfLegend {
   address: String!
 }
 
+type LegendOffspring {
+  offspring: [String!]!
+}
+
 type Query {
   getHello: String!
   childContracts: ChildContracts!
@@ -169,6 +173,7 @@ type Query {
   blendingCost(p2: String, p1: String!): BlendingCost!
   totalNFTSupply: TotalNFTSupply!
   ownerOfLegend(id: String!): OwnerOfLegend!
+  legendOffspring(id: String!): LegendOffspring!
   rejuvenationRules: RejuvenationRules!
   marketplaceRules: MarketplaceRules!
 }

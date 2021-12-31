@@ -13,6 +13,7 @@ import { BlendingSlotsUsedModule } from './blending-slots-used/blending-slots-us
 import { BlendingCostModule } from './blending-cost/blending-cost.module';
 import { TotalNFTSupplyModule } from './total-nft-supply/total-nft-supply.module';
 import { OwnerOfLegendModule } from './owner-of-legend/owner-of-legend.module';
+import { LegendOffspringModule } from './legend-offspring/legend-offspring.module';
 
 @Module({
   providers: [NFTService, NFTResolver],
@@ -28,7 +29,8 @@ import { OwnerOfLegendModule } from './owner-of-legend/owner-of-legend.module';
     BlendingSlotsUsedModule,
     BlendingCostModule,
     TotalNFTSupplyModule,
-    OwnerOfLegendModule
+    OwnerOfLegendModule,
+    LegendOffspringModule
   ],
 })
 export class NFTModule {}
