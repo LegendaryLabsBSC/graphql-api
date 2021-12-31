@@ -27,6 +27,7 @@ import { NFTModule } from './nft/nft.module';
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
       playground: true,
+      introspection: true,
     }),
     // MongooseModule.forRoot('mongodb://localhost/graphql-api-test1'),
     EthersModule.forRoot({
