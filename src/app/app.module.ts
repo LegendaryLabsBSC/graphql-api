@@ -27,7 +27,7 @@ import { NFTModule } from './nft/nft.module';
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
     }),
-    MongooseModule.forRoot('mongodb://localhost/graphql-api-test1'),
+    // MongooseModule.forRoot('mongodb://localhost/graphql-api-test1'),
     EthersModule.forRoot({
       network: BNB_TESTNET_NETWORK,
       custom: 'https://data-seed-prebsc-2-s2.binance.org:8545/',

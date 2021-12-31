@@ -111,6 +111,10 @@ type IncubationViews {
   incubationView5: String!
 }
 
+type IsHatchable {
+  isHatchable: Boolean!
+}
+
 type Query {
   getHello: String!
   childContracts: ChildContracts!
@@ -128,6 +132,7 @@ type Query {
   allLegendNFTs(filter: String!): [LegendNFT!]!
   legendNFTsByOwner(address: String!): [LegendNFT!]!
   incubationViews: IncubationViews!
+  isHatchable(id: String!): IsHatchable!
   rejuvenationRules: RejuvenationRules!
   marketplaceRules: MarketplaceRules!
 }

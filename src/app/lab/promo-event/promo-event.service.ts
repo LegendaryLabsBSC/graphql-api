@@ -27,22 +27,22 @@ export class PromoEventService {
     return promoEvent;
   }
 
-  filterData(filter: string, data: PromoEvent): boolean {
-    switch (filter) {
-      case 'all':
-        return true;
-      case 'open':
-        if (String(data.isPromoClosed) === 'false') return true;
-        break;
-      case 'closed':
-        if (String(data.isPromoClosed) === 'true') return true;
-        break;
-      default:
-        return false;
-    }
-  }
-
   async fetchAllPromoEvents(filter: string): Promise<PromoEvent[]> {
+    const filterData = (filter: string, data: PromoEvent): boolean => {
+      switch (filter) {
+        case 'all':
+          return true;
+        case 'open':
+          if (data.isPromoClosed.toString() === 'false') return true; //todo
+          break;
+        case 'closed':
+          if (data.isPromoClosed.toString() === 'true') return true;
+          break;
+        default:
+          return false;
+      }
+    };
+
     const allPromos: PromoEvent[] = [];
 
     const countsData: PromoCounts = await lab.admin.fetchPromoCounts();
@@ -52,7 +52,7 @@ export class PromoEventService {
 
       const promoEvent: PromoEvent = await this.fetchPromoEvent(promoIndex);
 
-      if (this.filterData(filter, promoEvent) === true)
+      if (filterData(filter, promoEvent) === true)
         allPromos.push(promoEvent);
     }
 
