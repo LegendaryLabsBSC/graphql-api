@@ -83,7 +83,7 @@ type LegendMetadata {
 type LegendURI {
   id: String!
   image: String!
-  payload: String!
+  payload: String
 }
 
 type LegendNFT {

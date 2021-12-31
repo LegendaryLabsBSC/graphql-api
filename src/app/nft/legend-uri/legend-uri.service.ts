@@ -11,16 +11,22 @@ export class LegendURIService {
     payload: 'Invalid Legend ID',
   };
 
-  parseData(data: String): LegendURI {
-    const uri: any = {};
-    const uriData = data.split(',', 3);
-
+  parseData(data: string, id: string): LegendURI {
     const pinataGateway = 'https://gateway.pinata.cloud/ipfs/';
-    const IPFSHash: string = uriData[1].slice(7);
 
-    uri['id'] = uriData[0];
-    uri['image'] = pinataGateway + IPFSHash;
-    uri['payload'] = uriData[2];
+    const uri: any = {};
+
+    // No payload if hatched: Not set in stone
+    if (/[,]/.test(data) === false) {
+      uri['id'] = id;
+      uri['image'] = pinataGateway + data.slice(7);
+    } else {
+      const uriData: string[] = data.split(',', 3);
+
+      uri['id'] = uriData[0];
+      uri['image'] = pinataGateway + uriData[1].slice(7);
+      uri['payload'] = uriData[2];
+    }
 
     return uri;
   }
@@ -28,7 +34,7 @@ export class LegendURIService {
   async fetchLegendURI(id: string): Promise<LegendURI> {
     try {
       const URIData: string = await lab.nft.fetchLegendURI(id);
-      const legendURI: LegendURI = this.parseData(URIData);
+      const legendURI: LegendURI = this.parseData(URIData, id);
 
       return legendURI;
     } catch (error) {

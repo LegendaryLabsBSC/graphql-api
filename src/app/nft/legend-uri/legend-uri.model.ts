@@ -8,6 +8,6 @@ export class LegendURI {
   @Field()
   image: string;
 
-  @Field()
-  payload: string;
+  @Field({ nullable: true })
+  payload?: string;
 }
