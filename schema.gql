@@ -113,6 +113,7 @@ type IncubationViews {
 
 type IsHatchable {
   isHatchable: Boolean!
+  unableReason: String
 }
 
 type IsBlendable {
@@ -134,6 +135,10 @@ type BlendingSlotsUsed {
 type BlendingCost {
   cost: String!
   ezCost: String
+}
+
+type TotalNFTSupply {
+  total: String!
 }
 
 type Query {
@@ -158,6 +163,7 @@ type Query {
   isListable(address: String!, id: String!): IsListable!
   blendingSlotsUsed(id: String!): BlendingSlotsUsed!
   blendingCost(p2: String, p1: String!): BlendingCost!
+  totalNFTSupply: TotalNFTSupply!
   rejuvenationRules: RejuvenationRules!
   marketplaceRules: MarketplaceRules!
 }

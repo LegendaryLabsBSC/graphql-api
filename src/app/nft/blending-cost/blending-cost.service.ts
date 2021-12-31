@@ -1,11 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { BlendingCost } from './blending-cost.model';
-import { BlendingRulesService } from '../blending-rules/blending-rules.service';
 import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
 @Injectable()
 export class BlendingCostService {
-  constructor(private readonly blendingRulesService: BlendingRulesService) {}
   async fetchBlendingCost(p1: string, p2?: string): Promise<BlendingCost> {
     const blendingCost: any = {};
     let cost: number;

@@ -4,5 +4,8 @@ import { ObjectType, Field } from '@nestjs/graphql';
 export class IsHatchable {
   @Field()
   isHatchable: boolean;
+
+  @Field({ nullable: true })
+  unableReason?: string;
 }
 

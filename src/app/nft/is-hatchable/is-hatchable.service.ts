@@ -9,6 +9,7 @@ export class IsHatchableService {
 
     if ((await lab.admin.isHatched(id)) === true) {
       isHatchable['isHatchable'] = false;
+      isHatchable['unableReason'] = 'Legend NFT Already Hatched';
     } else {
       isHatchable['isHatchable'] = await lab.nft.isHatchable(id);
     }
