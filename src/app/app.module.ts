@@ -3,7 +3,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
-// import { LegendnftModule } from './legendnft/legendnft.module';
 import {
   EthersModule,
   InjectEthersProvider,
@@ -15,12 +14,12 @@ import { MatchingModule } from './matching/matching.module';
 import { MarketplaceModule } from './marketplace/marketplace.module';
 import { RejuModule } from './reju/reju.module';
 import { TokenModule } from './token/token.module';
-import { NftModule } from './nft/nft.module';
+import { NFTModule } from './nft/nft.module';
 
 @Module({
   imports: [
     LabModule,
-    NftModule,
+    NFTModule,
     TokenModule,
     RejuModule,
     MarketplaceModule,
@@ -28,7 +27,7 @@ import { NftModule } from './nft/nft.module';
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
     }),
-    MongooseModule.forRoot('mongodb://localhost/graphql-api-test1'),
+    // MongooseModule.forRoot('mongodb://localhost/graphql-api-test1'),
     EthersModule.forRoot({
       network: BNB_TESTNET_NETWORK,
       custom: 'https://data-seed-prebsc-2-s2.binance.org:8545/',

@@ -7,7 +7,14 @@ export class PromoEventResolver {
   constructor(private readonly promoEventService: PromoEventService) {}
 
   @Query((returns) => PromoEvent)
-  async fetchPromoEvent(@Args('id', { type: () => String }) id: string) {
+  async promoEvent(@Args('id') id: string) {
     return await this.promoEventService.fetchPromoEvent(id);
+  }
+
+  @Query((returns) => [PromoEvent])
+  async allPromoEvents(
+    @Args('filter') filter: string,
+  ) {
+    return (await this.promoEventService.fetchAllPromoEvents(filter)) || [];
   }
 }

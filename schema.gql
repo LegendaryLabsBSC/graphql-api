@@ -64,17 +64,116 @@ type BlendingRules {
   incubationPeriod: String!
 }
 
+type LegendMetadata {
+  id: String!
+  season: String!
+  prefix: String!
+  postfix: String!
+  parent1: String!
+  parent2: String!
+  birthday: String!
+  blendingInstancesUsed: String!
+  totalOffspring: String!
+  legendCreator: String!
+  isLegendary: String!
+  isHatched: String!
+  isDestroyed: String!
+}
+
+type LegendURI {
+  id: String!
+  image: String!
+  payload: String!
+}
+
+type LegendNFT {
+  id: String!
+  image: String!
+  season: String!
+  prefix: String!
+  postfix: String!
+  parent1: String!
+  parent2: String!
+  birthday: String!
+  blendingInstancesUsed: String!
+  totalOffspring: String!
+  legendCreator: String!
+  isLegendary: String!
+  isHatched: String!
+  isDestroyed: String!
+}
+
+type IncubationViews {
+  view1: String!
+  view2: String!
+  view3: String!
+  view4: String!
+  view5: String!
+}
+
+type IsHatchable {
+  isHatchable: Boolean!
+  unableReason: String
+}
+
+type IsBlendable {
+  isBlendable: Boolean!
+  unableReason: String
+}
+
+type IsListable {
+  isListable: Boolean!
+  unableReason: String
+}
+
+type BlendingSlotsUsed {
+  blendingSlotsUsed: String!
+  maxBlendingSlotsUsed: String!
+  figure: String!
+}
+
+type BlendingCost {
+  cost: String!
+  ezCost: String
+}
+
+type TotalNFTSupply {
+  total: String!
+}
+
+type OwnerOfLegend {
+  address: String!
+}
+
+type LegendOffspring {
+  offspring: [String!]!
+}
+
 type Query {
   getHello: String!
-  fetchChildContracts: ChildContracts!
-  fetchPromoEvent(id: String!): PromoEvent!
-  fetchPromoCounts: PromoCounts!
-  fetchRedeemablePromoTickets(address: String!, id: String!): RedeemablePromoTickets!
-  fetchAllPromoEvents(filter: String!): [PromoEvent!]!
-  fetchAllPromoTickets(address: String!): [RedeemablePromoTickets!]!
-  fetchAccessControlRoles: AccessControlRoles!
-  fetchAccessControlUsers(role: String!): [AccessControlUsers!]!
-  fetchBlendingRules: BlendingRules!
-  fetchRejuvenationRules: RejuvenationRules!
-  fetchMarketplaceRules: MarketplaceRules!
+  childContracts: ChildContracts!
+  promoEvent(id: String!): PromoEvent!
+  allPromoEvents(filter: String!): [PromoEvent!]!
+  promoCounts: PromoCounts!
+  redeemablePromoTickets(address: String!, id: String!): RedeemablePromoTickets!
+  allPromoTicketsByUser(address: String!): [RedeemablePromoTickets!]!
+  accessControlRoles: AccessControlRoles!
+  accessControlUsers(role: String!): [AccessControlUsers!]!
+  blendingRules: BlendingRules!
+  legendMetadata(id: String!): LegendMetadata!
+  legendURI(id: String!): LegendURI!
+  legendNFT(id: String!): LegendNFT!
+  allLegendNFTs(filter: String!): [LegendNFT!]!
+  legendNFTsByOwner(address: String!): [LegendNFT!]!
+  incubationViews: IncubationViews!
+  isHatchable(id: String!): IsHatchable!
+  isBlendable(id: String!): IsBlendable!
+  isListable(address: String!, id: String!): IsListable!
+  blendingSlotsUsed(id: String!): BlendingSlotsUsed!
+  blendingCost(p2: String, p1: String!): BlendingCost!
+  totalNFTSupply: TotalNFTSupply!
+  ownerOfLegend(id: String!): OwnerOfLegend!
+  legendOffspring(id: String!): LegendOffspring!
+  rejuvenationRules: RejuvenationRules!
+  marketplaceRules: MarketplaceRules!
 }

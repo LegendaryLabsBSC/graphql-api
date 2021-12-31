@@ -7,7 +7,7 @@ export class PromoCountsResolver {
   constructor(private readonly promoCountsService: PromoCountsService) {}
 
   @Query((returns) => PromoCounts)
-  async fetchPromoCounts() {
+  async promoCounts() {
     return await this.promoCountsService.fetchPromoCounts();
   }
 }

@@ -1,27 +1,61 @@
 import { Injectable } from '@nestjs/common';
 import { PromoEvent } from './promo-event.model';
+import { PromoCounts } from '../promo-counts/promo-counts.model';
 import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
-
-
-export async function parseData(data: PromoEvent): Promise<PromoEvent> {
-  const promoEvent: any = {};
-
-  const keys = Object.keys(data).slice(9);
-  const values = `${data}`.split(',');
-
-  keys.forEach((key: string, index) => {
-    promoEvent[key] = values[index];
-  });
-
-  return promoEvent;
-}
 
 @Injectable()
 export class PromoEventService {
-  async fetchPromoEvent(id: string): Promise<PromoEvent> {
-    const promoData: PromoEvent = await lab.admin.fetchPromoEvent(id);
-    const promoEvent: PromoEvent = await parseData(promoData);
+  parseData(data: PromoEvent): PromoEvent {
+    const promoEvent: any = {};
+
+    const keys = Object.keys(data).slice(9);
+    const values = `${data}`.split(',');
+
+    keys.forEach((key: string, index) => {
+      promoEvent[key] = values[index];
+    });
 
     return promoEvent;
+  }
+
+  async fetchPromoEvent(id: string): Promise<PromoEvent> {
+    let promoEvent: PromoEvent;
+
+    promoEvent = await lab.admin.fetchPromoEvent(id);
+    promoEvent = this.parseData(promoEvent);
+
+    return promoEvent;
+  }
+
+  async fetchAllPromoEvents(filter: string): Promise<PromoEvent[]> {
+    const filterData = (filter: string, data: PromoEvent): boolean => {
+      switch (filter) {
+        case 'all':
+          return true;
+        case 'open':
+          if (data.isPromoClosed.toString() === 'false') return true; //todo
+          break;
+        case 'closed':
+          if (data.isPromoClosed.toString() === 'true') return true;
+          break;
+        default:
+          return false;
+      }
+    };
+
+    const allPromos: PromoEvent[] = [];
+
+    const countsData: PromoCounts = await lab.admin.fetchPromoCounts();
+
+    for (let i = 0; i < countsData[0]; i++) {
+      const promoIndex: string = (i + 1).toString();
+
+      const promoEvent: PromoEvent = await this.fetchPromoEvent(promoIndex);
+
+      if (filterData(filter, promoEvent) === true)
+        allPromos.push(promoEvent);
+    }
+
+    return allPromos;
   }
 }

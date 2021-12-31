@@ -4,7 +4,7 @@ import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
 @Injectable()
 export class PromoCountsService {
-  async parseData(data: PromoCounts): Promise<PromoCounts> {
+  parseData(data: PromoCounts): PromoCounts {
     const promoCounts: any = {};
 
     promoCounts['totalPromos'] = data[0].toString();
@@ -15,7 +15,7 @@ export class PromoCountsService {
 
   async fetchPromoCounts(): Promise<PromoCounts> {
     const countsData: PromoCounts = await lab.admin.fetchPromoCounts();
-    const promoCounts: PromoCounts = await this.parseData(countsData);
+    const promoCounts: PromoCounts = this.parseData(countsData);
 
     return promoCounts;
   }
