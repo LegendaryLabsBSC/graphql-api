@@ -47,8 +47,8 @@ export class PromoEventService {
 
     const countsData: PromoCounts = await lab.admin.fetchPromoCounts();
 
-    for (let i = 0; i < countsData[0]; i++) {
-      const promoIndex: string = (i + 1).toString();
+    for (let i = 1; i <= countsData[0]; i++) {
+      const promoIndex: string = i.toString();
 
       const promoEvent: PromoEvent = await this.fetchPromoEvent(promoIndex);
 
