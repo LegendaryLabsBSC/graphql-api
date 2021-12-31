@@ -8,6 +8,7 @@ import { LegendNFTModule } from './legend-nft/legend-nft.module';
 import { IncubationViewsModule } from './incubation-views/incubation-views.module';
 import { IsHatchableModule } from './is-hatchable/is-hatchable.module';
 import { IsBlendableModule } from './is-blendable/is-blendable.module';
+import { IsListableModule } from './is-listable/is-listable.module';
 
 @Module({
   providers: [NFTService, NFTResolver],
@@ -19,6 +20,7 @@ import { IsBlendableModule } from './is-blendable/is-blendable.module';
     IncubationViewsModule,
     IsHatchableModule,
     IsBlendableModule,
+    IsListableModule,
   ],
 })
 export class NFTModule {}

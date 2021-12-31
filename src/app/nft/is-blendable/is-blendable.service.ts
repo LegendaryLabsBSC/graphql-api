@@ -11,7 +11,9 @@ export class IsBlendableService {
 
     if ((await lab.admin.isHatched(id)) === false) {
       isBlendable['isBlendable'] = false;
-      isBlendable['unableReason'] = 'Legend Not Hatched';
+      isBlendable['unableReason'] = 'Legend NFT Not Hatched';
+
+      return isBlendable;
     }
 
     const blendingSlotsUsed: bigint = await lab.admin.fetchBlendingCount(id);

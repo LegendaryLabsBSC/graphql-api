@@ -3,18 +3,17 @@ import { ObjectType, Field } from '@nestjs/graphql';
 @ObjectType()
 export class IncubationViews {
   @Field()
-  incubationView1: string;
+  view1: string;
 
   @Field()
-  incubationView2: string;
+  view2: string;
 
   @Field()
-  incubationView3: string;
+  view3: string;
 
   @Field()
-  incubationView4: string;
+  view4: string;
 
   @Field()
-  incubationView5: string;
+  view5: string;
 }
-

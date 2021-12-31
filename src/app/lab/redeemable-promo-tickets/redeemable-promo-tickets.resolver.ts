@@ -10,8 +10,8 @@ export class RedeemablePromoTicketsResolver {
 
   @Query((returns) => RedeemablePromoTickets)
   async redeemablePromoTickets(
-    @Args('id') id: string,
-    @Args('address') address: string,
+    @Args('id', { type: () => String }) id: string,
+    @Args('address', { type: () => String }) address: string,
   ) {
     return await this.redeemableTicketsService.fetchRedeemablePromoTickets(
       id,

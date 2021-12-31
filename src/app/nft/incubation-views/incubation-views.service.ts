@@ -9,11 +9,11 @@ export class IncubationViewsService {
 
     const pinataGateway = 'https://gateway.pinata.cloud/ipfs/';
 
-    incubationViews['incubationView1'] = pinataGateway + data[0].slice(7);
-    incubationViews['incubationView2'] = pinataGateway + data[1].slice(7);
-    incubationViews['incubationView3'] = pinataGateway + data[2].slice(7);
-    incubationViews['incubationView4'] = pinataGateway + data[3].slice(7);
-    incubationViews['incubationView5'] = pinataGateway + data[4].slice(7);
+    incubationViews['view1'] = pinataGateway + data[0].slice(7);
+    incubationViews['view2'] = pinataGateway + data[1].slice(7);
+    incubationViews['view3'] = pinataGateway + data[2].slice(7);
+    incubationViews['view4'] = pinataGateway + data[3].slice(7);
+    incubationViews['view5'] = pinataGateway + data[4].slice(7);
 
     return incubationViews;
   }
