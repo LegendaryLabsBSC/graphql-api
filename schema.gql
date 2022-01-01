@@ -20,6 +20,9 @@ type PromoEvent {
   isPromoClosed: String!
   ticketsClaimed: String!
   ticketsRedeemed: String!
+  lengthInDays: Int!
+  maxTicketsDispensable: String
+  promoLegendsIncubated: Boolean!
 }
 
 type PromoCounts {
@@ -29,7 +32,9 @@ type PromoCounts {
 
 type RedeemablePromoTickets {
   promoName: String!
+  promoId: String!
   ticketsCount: String!
+  promoClaimed: String
 }
 
 type AccessControlRoles {

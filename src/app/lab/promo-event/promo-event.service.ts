@@ -15,6 +15,10 @@ export class PromoEventService {
       promoEvent[key] = values[index];
     });
 
+    promoEvent['lengthInDays'] =
+      (parseInt(promoEvent.expireTime) - parseInt(promoEvent.startTime)) /
+      86400; // One day in seconds
+
     return promoEvent;
   }
 
@@ -23,6 +27,22 @@ export class PromoEventService {
 
     promoEvent = await lab.admin.fetchPromoEvent(id);
     promoEvent = this.parseData(promoEvent);
+
+    let maxTickets: bigint;
+
+    try {
+      maxTickets = (await lab.admin.fetchMaxTicketsDispensable(id)).toString();
+    } catch (e) {
+      if (e.reason === 'Promo Event Does Not Have A Max Ticket Limit') {
+        maxTickets = null;
+      } else {
+        throw new Error('Unknown API Error Occurred');
+      }
+    } finally {
+      promoEvent['maxTicketsDispensable'] = maxTickets;
+    }
+
+    promoEvent['promoLegendsIncubated'] = await lab.admin.isPromoIncubated(id);
 
     return promoEvent;
   }
@@ -52,8 +72,7 @@ export class PromoEventService {
 
       const promoEvent: PromoEvent = await this.fetchPromoEvent(promoIndex);
 
-      if (filterData(filter, promoEvent) === true)
-        allPromos.push(promoEvent);
+      if (filterData(filter, promoEvent) === true) allPromos.push(promoEvent);
     }
 
     return allPromos;

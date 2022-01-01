@@ -9,6 +9,7 @@ export class RedeemablePromoTicketsService {
   parseData(data: RedeemablePromoTickets): RedeemablePromoTickets {
     const redeemableTickets: any = {};
 
+    redeemableTickets['promoId'] = data.promoId;
     redeemableTickets['promoName'] = data.promoName;
     redeemableTickets['ticketsCount'] = data.ticketsCount.toString();
 
@@ -16,24 +17,29 @@ export class RedeemablePromoTicketsService {
   }
 
   async fetchRedeemablePromoTickets(
-    id: string,
+    promoId: string,
     address: string,
   ): Promise<RedeemablePromoTickets> {
     let ticketsCount: bigint;
     let promoName: string;
 
     try {
-      ticketsCount = await lab.admin.fetchRedeemableTickets(id, address);
-      promoName = (await lab.admin.fetchPromoEvent(id)).promoName;
+      ticketsCount = await lab.admin.fetchRedeemableTickets(promoId, address);
+      promoName = (await lab.admin.fetchPromoEvent(promoId)).promoName;
     } catch (error) {
       ticketsCount = BigInt(0);
       promoName = 'Promo Event Closed';
     }
 
     const redeemableTickets: RedeemablePromoTickets = this.parseData({
+      promoId,
       promoName,
       ticketsCount,
     });
+
+    redeemableTickets['promoClaimed'] = (
+      await lab.admin.isClaimed(promoId, address)
+    ).toString();
 
     return redeemableTickets;
   }
@@ -45,8 +51,8 @@ export class RedeemablePromoTicketsService {
 
     const countsData: PromoCounts = await lab.admin.fetchPromoCounts();
 
-    for (let i = 0; i < countsData[0]; i++) {
-      const promoIndex: string = (i + 1).toString();
+    for (let i = 1; i <= countsData[0]; i++) {
+      const promoIndex: string = i.toString();
 
       const promoEvent: PromoEvent = await lab.admin.fetchPromoEvent(
         promoIndex,

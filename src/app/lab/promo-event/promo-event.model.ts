@@ -1,4 +1,4 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class PromoEvent {
@@ -28,4 +28,13 @@ export class PromoEvent {
 
   @Field((type) => String)
   ticketsRedeemed: bigint;
+
+  @Field((type) => Int)
+  lengthInDays: number;
+
+  @Field((type) => String, { nullable: true })
+  maxTicketsDispensable: bigint;
+
+  @Field()
+  promoLegendsIncubated: boolean;
 }
