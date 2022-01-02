@@ -1,9 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { LegendListing } from './legend-listing.model';
 import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
+import { AuctionDetailsService } from '../auction-details/auction-details.service';
+import { OfferDetailsService } from '../offer-details/offer-details.service';
 
 @Injectable()
 export class LegendListingService {
+  constructor(
+    private readonly auctionDetailsService: AuctionDetailsService,
+    private readonly offerDetailsService: OfferDetailsService,
+  ) {}
+
   parseData(data: LegendListing): LegendListing {
     const parseStatus = (status: number): string => {
       const listingService: any = {
@@ -40,22 +47,57 @@ export class LegendListingService {
     legendListing = await lab.marketplace.fetchLegendListing(id);
     legendListing = this.parseData(legendListing);
 
-    // let maxTickets: bigint;
+    legendListing['auctionDetails'] =
+      await this.auctionDetailsService.fetchAuctionDetails(id);
 
-    // try {
-    //   maxTickets = (await lab.admin.fetchMaxTicketsDispensable(id)).toString();
-    // } catch (e) {
-    //   if (e.reason === 'Promo Event Does Not Have A Max Ticket Limit') {
-    //     maxTickets = null;
-    //   } else {
-    //     throw new Error('Unknown API Error Occurred');
-    //   }
-    // } finally {
-    //   legendListing['maxTicketsDispensable'] = maxTickets;
-    // }
-
-    // legendListing['promoLegendsIncubated'] = await lab.admin.isPromoIncubated(id);
+    legendListing['offerDetails'] =
+      await this.offerDetailsService.fetchOfferDetails(id);
 
     return legendListing;
+  }
+
+  async fetchAllLegendListings(
+    filter: string,
+    status: string,
+  ): Promise<LegendListing[]> {
+    const filterData = (filter: string, data: LegendListing): boolean => {
+      switch (filter) {
+        case 'all':
+          return true;
+        case 'sale':
+          if (
+            data.isAuction.toString() === 'false' &&
+            data.isOffer.toString() === 'false'
+          )
+            return true;
+          break;
+        case 'auction':
+          if (data.isAuction.toString() === 'true') return true;
+          break;
+        case 'offer':
+          if (data.isOffer.toString() === 'true') return true;
+          break;
+        default:
+          return false;
+      }
+    };
+
+    const allListings: LegendListing[] = [];
+
+    // const countsData: PromoCounts = await lab.admin.fetchPromoCounts(); // todo
+    const countsData = await lab.marketplace.fetchListingCounts();
+
+    for (let i = 1; i <= countsData[0]; i++) {
+      const listingIndex: string = i.toString();
+
+      const legendListing: LegendListing = await this.fetchLegendListing(
+        listingIndex,
+      );
+
+      if (filterData(filter, legendListing) === true)
+        allListings.push(legendListing);
+    }
+
+    return allListings;
   }
 }

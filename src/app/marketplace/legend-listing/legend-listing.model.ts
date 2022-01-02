@@ -1,4 +1,6 @@
 import { ObjectType, Field } from '@nestjs/graphql';
+import { AuctionDetails } from '../auction-details/auction-details.model';
+import { OfferDetails } from '../offer-details/offer-details.model';
 
 @ObjectType()
 export class LegendListing {
@@ -31,4 +33,10 @@ export class LegendListing {
 
   @Field((type) => String, { nullable: true })
   status: number;
+
+  @Field()
+  auctionDetails: AuctionDetails;
+
+  @Field()
+  offerDetails: OfferDetails;
 }

@@ -55,19 +55,6 @@ type MarketplaceRules {
   auctionDurations: [String!]!
 }
 
-type LegendListing {
-  listingId: String!
-  createdAt: String!
-  nftContract: String!
-  legendId: String!
-  seller: String!
-  buyer: String!
-  price: String!
-  isAuction: String!
-  isOffer: String!
-  status: String
-}
-
 type AuctionDetails {
   duration: String
   startingPrice: String
@@ -83,6 +70,21 @@ type OfferDetails {
   expirationTime: String
   legendOwner: String
   isAccepted: String
+}
+
+type LegendListing {
+  listingId: String!
+  createdAt: String!
+  nftContract: String!
+  legendId: String!
+  seller: String!
+  buyer: String!
+  price: String!
+  isAuction: String!
+  isOffer: String!
+  status: String
+  auctionDetails: AuctionDetails!
+  offerDetails: OfferDetails!
 }
 
 type RejuvenationRules {
@@ -223,6 +225,7 @@ type Query {
   podDetails(id: String!): PodDetails!
   marketplaceRules: MarketplaceRules!
   legendListing(id: String!): LegendListing!
+  allLegendListings(status: String, filter: String!): [LegendListing!]!
   auctionDetails(id: String!): AuctionDetails!
   offerDetails(id: String!): OfferDetails!
 }

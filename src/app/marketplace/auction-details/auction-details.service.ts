@@ -38,7 +38,7 @@ export class AuctionDetailsService {
       auctionDetails['bidders'] = await lab.marketplace.fetchBidders(id);
       
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       auctionDetails = {
         duration: null,
         startingPrice: null,
