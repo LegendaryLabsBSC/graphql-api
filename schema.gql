@@ -22,7 +22,7 @@ type PromoEvent {
   ticketsRedeemed: String!
   lengthInDays: Int!
   maxTicketsDispensable: String
-  promoLegendsIncubated: Boolean!
+  legendsSkipIncubation: Boolean!
 }
 
 type PromoCounts {
@@ -53,6 +53,30 @@ type MarketplaceRules {
   offerDuration: String!
   auctionExtension: String!
   auctionDurations: [String!]!
+}
+
+type LegendListing {
+  listingId: String!
+  createdAt: String!
+  nftContract: String!
+  legendId: String!
+  seller: String!
+  buyer: String!
+  price: String!
+  isAuction: String!
+  isOffer: String!
+  status: String
+}
+
+type AuctionDetails {
+  duration: String
+  startingPrice: String
+  highestBid: String
+  highestBidder: String
+  isInstantBuy: String
+  durationInDays: String
+  instantBuyPrice: String
+  bidders: [String!]
 }
 
 type RejuvenationRules {
@@ -192,4 +216,6 @@ type Query {
   rejuvenationRules: RejuvenationRules!
   podDetails(id: String!): PodDetails!
   marketplaceRules: MarketplaceRules!
+  legendListing(id: String!): LegendListing!
+  auctionDetails(id: String!): AuctionDetails!
 }
