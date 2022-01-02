@@ -62,6 +62,16 @@ type RejuvenationRules {
   reJuNeededPerSlot: String!
 }
 
+type PodDetails {
+  depositedBy: String!
+  checkpointBlock: String!
+  blendingInstancesUsed: String!
+  tokenAmountSecured: String!
+  multiplier: String!
+  rolloverReju: String!
+  occupied: String!
+}
+
 type BlendingRules {
   kinBlendingLevel: String!
   blendingLimit: String!
@@ -180,5 +190,6 @@ type Query {
   ownerOfLegend(id: String!): OwnerOfLegend!
   legendOffspring(id: String!): LegendOffspring!
   rejuvenationRules: RejuvenationRules!
+  podDetails(id: String!): PodDetails!
   marketplaceRules: MarketplaceRules!
 }
