@@ -79,6 +79,12 @@ type AuctionDetails {
   bidders: [String!]
 }
 
+type OfferDetails {
+  expirationTime: String
+  legendOwner: String
+  isAccepted: String
+}
+
 type RejuvenationRules {
   minimumSecure: String!
   maxMultiplier: String!
@@ -218,4 +224,5 @@ type Query {
   marketplaceRules: MarketplaceRules!
   legendListing(id: String!): LegendListing!
   auctionDetails(id: String!): AuctionDetails!
+  offerDetails(id: String!): OfferDetails!
 }

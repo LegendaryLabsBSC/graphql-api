@@ -9,7 +9,7 @@ export class AuctionDetails {
   startingPrice: bigint;
 
   @Field((type) => String, { nullable: true })
-  highestBid: string;
+  highestBid: bigint;
 
   @Field({ nullable: true })
   highestBidder: string;
