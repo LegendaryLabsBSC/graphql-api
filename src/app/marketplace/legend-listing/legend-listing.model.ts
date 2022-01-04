@@ -32,7 +32,7 @@ export class LegendListing {
   isOffer: boolean;
 
   @Field((type) => String, { nullable: true })
-  status: number;
+  status: string;
 
   @Field()
   auctionDetails: AuctionDetails;

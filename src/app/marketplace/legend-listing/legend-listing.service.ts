@@ -82,7 +82,7 @@ export class LegendListingService {
       }
     };
 
-    const allListings: LegendListing[] = [];
+    let allListings: LegendListing[] = [];
 
     // const countsData: PromoCounts = await lab.admin.fetchPromoCounts(); // todo
     const countsData = await lab.marketplace.fetchListingCounts();
@@ -96,6 +96,26 @@ export class LegendListingService {
 
       if (filterData(filter, legendListing) === true)
         allListings.push(legendListing);
+    }
+
+    if (status !== undefined) {
+      allListings = allListings.filter((listing) => {
+        switch (status) {
+          case 'all':
+            return true;
+          case 'open':
+            if (listing.status === 'Open') return true;
+            break;
+          case 'closed':
+            if (listing.status === 'Closed') return true;
+            break;
+          case 'cancelled':
+            if (listing.status === 'Cancelled') return true;
+            break;
+          default:
+            return false;
+        }
+      });
     }
 
     return allListings;
