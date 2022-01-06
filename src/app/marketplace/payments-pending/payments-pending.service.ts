@@ -6,7 +6,12 @@ import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 export class PaymentsPendingService {
   async fetchPaymentsPending(address: string): Promise<PaymentsPending> {
     const paymentsPending: PaymentsPending = {
-      amount: (await lab.marketplace.fetchPaymentsPending(address)).toString(),
+      listingPayments: (
+        await lab.marketplace.fetchPaymentsPending(address)
+      ).toString(),
+      royaltiesAccrued: (
+        await lab.marketplace.fetchRoyaltiesAccrued(address)
+      ).toString(),
     };
 
     return paymentsPending;
