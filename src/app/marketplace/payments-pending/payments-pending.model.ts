@@ -1,0 +1,7 @@
+import { ObjectType, Field } from '@nestjs/graphql';
+
+@ObjectType()
+export class PaymentsPending {
+  @Field((type) => String)
+  amount: bigint;
+}

@@ -87,6 +87,10 @@ type LegendListing {
   offerDetails: OfferDetails!
 }
 
+type PaymentsPending {
+  amount: String!
+}
+
 type RejuvenationRules {
   minimumSecure: String!
   maxMultiplier: String!
@@ -228,4 +232,5 @@ type Query {
   allLegendListings(status: String, filter: String!): [LegendListing!]!
   auctionDetails(id: String!): AuctionDetails!
   offerDetails(id: String!): OfferDetails!
+  paymentsPending(address: String!): PaymentsPending!
 }
