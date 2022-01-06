@@ -36,7 +36,8 @@ export class AuctionDetailsService {
       }
 
       auctionDetails['bidders'] = await lab.marketplace.fetchBidders(id);
-      
+
+      auctionDetails['isExpired'] = await lab.marketplace.isExpired(id);
     } catch (error) {
       // console.error(error);
       auctionDetails = {
@@ -48,6 +49,7 @@ export class AuctionDetailsService {
         durationInDays: null,
         instantBuyPrice: null,
         bidders: null,
+        isExpired: null,
       };
     }
 

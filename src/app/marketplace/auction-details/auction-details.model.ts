@@ -23,6 +23,9 @@ export class AuctionDetails {
   @Field({ nullable: true })
   instantBuyPrice: string;
 
-  @Field((type) => [String],{ nullable: true })
+  @Field((type) => [String], { nullable: true })
   bidders: [string];
+
+  @Field({ nullable: true })
+  isExpired: boolean;
 }
