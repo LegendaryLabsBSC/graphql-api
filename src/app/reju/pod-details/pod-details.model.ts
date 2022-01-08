@@ -3,6 +3,9 @@ import { ObjectType, Field } from '@nestjs/graphql';
 @ObjectType()
 export class PodDetails {
   @Field()
+  nftContract: string;
+
+  @Field()
   depositedBy: string;
 
   @Field((type) => String)

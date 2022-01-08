@@ -101,6 +101,7 @@ type RejuvenationRules {
 }
 
 type PodDetails {
+  nftContract: String!
   depositedBy: String!
   checkpointBlock: String!
   blendingInstancesUsed: String!

@@ -1,5 +1,5 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
-import { PodDetailsService } from './pod-details..service';
+import { PodDetailsService } from './pod-details.service';
 import { PodDetails } from './pod-details.model';
 
 @Resolver()
