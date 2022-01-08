@@ -7,7 +7,7 @@ export class PodDetailsService {
   parseData(data: PodDetails): PodDetails {
     const podDetails: any = {};
 
-    const keys = Object.keys(data).slice();
+    const keys = Object.keys(data).slice(8);
     const values = `${data}`.split(',');
 
     console.log(keys);
@@ -21,6 +21,7 @@ export class PodDetailsService {
   }
 
   async fetchPodDetails(id: string): Promise<PodDetails> {
+    //todo: work on how error should return
     let podDetails: PodDetails;
 
     podDetails = await lab.reju.fetchPodDetails(id);
