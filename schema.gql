@@ -111,6 +111,11 @@ type PodDetails {
   occupied: String!
 }
 
+type RejuvenationProgress {
+  earnedReJu: String!
+  maxEarnableReju: String!
+}
+
 type BlendingRules {
   kinBlendingLevel: String!
   blendingLimit: String!
@@ -230,6 +235,7 @@ type Query {
   legendOffspring(id: String!): LegendOffspring!
   rejuvenationRules: RejuvenationRules!
   podDetails(id: String!): PodDetails!
+  rejuvenationProgress(id: String!): RejuvenationProgress!
   marketplaceRules: MarketplaceRules!
   legendListing(id: String!): LegendListing!
   allLegendListings(status: String, filter: String!): [LegendListing!]!
