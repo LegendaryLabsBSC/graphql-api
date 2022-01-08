@@ -116,6 +116,10 @@ type RejuvenationProgress {
   maxEarnableReju: String!
 }
 
+type BalanceOf {
+  balance: String!
+}
+
 type BlendingRules {
   kinBlendingLevel: String!
   blendingLimit: String!
@@ -233,6 +237,7 @@ type Query {
   totalNFTSupply: TotalNFTSupply!
   ownerOfLegend(id: String!): OwnerOfLegend!
   legendOffspring(id: String!): LegendOffspring!
+  LGNDbalanceOf(address: String!): BalanceOf!
   rejuvenationRules: RejuvenationRules!
   podDetails(id: String!): PodDetails!
   rejuvenationProgress(id: String!): RejuvenationProgress!
