@@ -22,7 +22,7 @@ type PromoEvent {
   ticketsRedeemed: String!
   lengthInDays: Int!
   maxTicketsDispensable: String
-  promoLegendsIncubated: Boolean!
+  legendsSkipIncubation: Boolean!
 }
 
 type PromoCounts {
@@ -55,11 +55,59 @@ type MarketplaceRules {
   auctionDurations: [String!]!
 }
 
+type AuctionDetails {
+  duration: String
+  startingPrice: String
+  highestBid: String
+  highestBidder: String
+  isInstantBuy: String
+  durationInDays: String
+  instantBuyPrice: String
+  bidders: [String!]
+  isExpired: Boolean
+}
+
+type OfferDetails {
+  expirationTime: String
+  legendOwner: String
+  isAccepted: String
+}
+
+type LegendListing {
+  listingId: String!
+  createdAt: String!
+  nftContract: String!
+  legendId: String!
+  seller: String!
+  buyer: String!
+  price: String!
+  isAuction: String!
+  isOffer: String!
+  status: String
+  auctionDetails: AuctionDetails!
+  offerDetails: OfferDetails!
+}
+
+type PaymentsPending {
+  listingPayments: String!
+  royaltiesAccrued: String!
+}
+
 type RejuvenationRules {
   minimumSecure: String!
   maxMultiplier: String!
   reJuPerBlock: String!
   reJuNeededPerSlot: String!
+}
+
+type PodDetails {
+  depositedBy: String!
+  checkpointBlock: String!
+  blendingInstancesUsed: String!
+  tokenAmountSecured: String!
+  multiplier: String!
+  rolloverReju: String!
+  occupied: String!
 }
 
 type BlendingRules {
@@ -180,5 +228,11 @@ type Query {
   ownerOfLegend(id: String!): OwnerOfLegend!
   legendOffspring(id: String!): LegendOffspring!
   rejuvenationRules: RejuvenationRules!
+  podDetails(id: String!): PodDetails!
   marketplaceRules: MarketplaceRules!
+  legendListing(id: String!): LegendListing!
+  allLegendListings(status: String, filter: String!): [LegendListing!]!
+  auctionDetails(id: String!): AuctionDetails!
+  offerDetails(id: String!): OfferDetails!
+  paymentsPending(address: String!): PaymentsPending!
 }

@@ -42,7 +42,7 @@ export class PromoEventService {
       promoEvent['maxTicketsDispensable'] = maxTickets;
     }
 
-    promoEvent['promoLegendsIncubated'] = await lab.admin.isPromoIncubated(id);
+    promoEvent['legendsSkipIncubation'] = await lab.admin.isPromoIncubated(id);
 
     return promoEvent;
   }

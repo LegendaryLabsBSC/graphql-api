@@ -36,5 +36,5 @@ export class PromoEvent {
   maxTicketsDispensable: bigint;
 
   @Field()
-  promoLegendsIncubated: boolean;
+  legendsSkipIncubation: boolean;
 }
