@@ -1,10 +1,10 @@
-const legendsLaboratory: string = '0x2B4d9636c3186f569eA1b6C5F4311AB1F4c50307';
-const legendsNFT: string = '0xE68D20FE31cFC39C950aE14cfad2F017959B4f38';
-const legendToken: string = '0x39c7103f4D83198f2EA5716D3cF44D908ae0546B';
-const legendRejuvenation: string = '0xe479072Cc1F9e923d97b4C75Bf68A8036E32e491';
-const legendsMarketplace: string = '0x9C0bcFF76dAa7c8D6cfea92f240add4070311d9D';
+const legendsLaboratory: string = '0x73EFadB889720aF989b3483DCCdc7c70bF1A23c1';
+const legendsNFT: string = '0x7e54598570f10AB2F6174b516B20eC5fA5B61fBc';
+const legendToken: string = '0x60E371E7B213Bc839e421f5A7f2aE5B25604e314';
+const legendRejuvenation: string = '0x4afc46cA3071f8499bd0702c152a0B0259969289';
+const legendsMarketplace: string = '0xe172Cdb33EAa06dca4bdd87B070b0558F16Df58B';
 const legendsMatchingBoard: string =
-  '0x604fC97B97412Dc80B8e914F207cf32881dE2bBC';
+  '0x654b348c52BaDb97BC626ea9Eed2F9bc4E920201';
 
 export {
   legendsLaboratory,
