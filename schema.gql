@@ -44,7 +44,8 @@ type AccessControlRoles {
 }
 
 type AccessControlUsers {
-  roleMember: String!
+  roleMembers: [String!]!
+  roleAdmin: String!
 }
 
 type LegendMatching {
@@ -256,7 +257,7 @@ type Query {
   redeemablePromoTickets(address: String!, id: String!): RedeemablePromoTickets!
   allPromoTicketsByUser(address: String!): [RedeemablePromoTickets!]!
   accessControlRoles: AccessControlRoles!
-  accessControlUsers(role: String!): [AccessControlUsers!]!
+  accessControlUsers(role: String!): AccessControlUsers!
   blendingRules: BlendingRules!
   legendMetadata(id: String!): LegendMetadata!
   legendURI(id: String!): LegendURI!

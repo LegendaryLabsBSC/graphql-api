@@ -4,10 +4,12 @@ import { AccessControlUsers } from './access-control-users.model';
 
 @Resolver()
 export class AccessControlUsersResolver {
-  constructor(private readonly accessControlUsersService: AccessControlUsersService) { }
+  constructor(
+    private readonly accessControlUsersService: AccessControlUsersService,
+  ) {}
 
-  @Query((returns) => [AccessControlUsers])
+  @Query((returns) => AccessControlUsers)
   async accessControlUsers(@Args('role', { type: () => String }) role: string) {
-    return await this.accessControlUsersService.fetchAccessControlUsers(role) || [];
+    return await this.accessControlUsersService.fetchAccessControlUsers(role) ;
   }
 }
