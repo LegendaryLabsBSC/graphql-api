@@ -47,6 +47,23 @@ type AccessControlUsers {
   roleMember: String!
 }
 
+type LegendMatching {
+  matchingId: String!
+  createdAt: String!
+  nftContract: String!
+  surrogate: String!
+  surrogateLegend: String!
+  blender: String!
+  blenderLegend: String!
+  childId: String!
+  price: String!
+  status: String
+}
+
+type TokensPending {
+  amount: String!
+}
+
 type MarketplaceRules {
   royaltyFee: String!
   marketPlaceFee: String!
@@ -91,6 +108,12 @@ type LegendListing {
 type PaymentsPending {
   listingPayments: String!
   royaltiesAccrued: String!
+}
+
+type ListingCounts {
+  listingIds: String!
+  listingsClosed: String!
+  listingsCancelled: String!
 }
 
 type RejuvenationRules {
@@ -254,4 +277,7 @@ type Query {
   auctionDetails(id: String!): AuctionDetails!
   offerDetails(id: String!): OfferDetails!
   paymentsPending(address: String!): PaymentsPending!
+  listingCounts: ListingCounts!
+  legendMatching(id: String!): LegendMatching!
+  tokensPending: TokensPending!
 }
