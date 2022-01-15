@@ -2,9 +2,9 @@ import { ObjectType, Field } from '@nestjs/graphql';
 
 @ObjectType()
 export class PromoCounts {
-  @Field((type) => String)
-  totalPromos: bigint;
+  @Field()
+  totalPromos: string;
 
-  @Field((type) => String)
-  promosClosed: bigint;
+  @Field()
+  promosClosed: string;
 }
