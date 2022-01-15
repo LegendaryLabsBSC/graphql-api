@@ -46,7 +46,7 @@ export class PromoEventService {
 
     const promoData = await lab.admin.fetchPromoEvent(id);
 
-    const promoEvent: PromoEvent = await this.parseData(promoData);
+    const promoEvent: PromoEvent = this.parseData(promoData);
 
     promoEvent['maxTicketsDispensable'] = await fetchMaxTickets(id);
     promoEvent['legendsSkipIncubation'] = await lab.admin.isPromoIncubated(id);

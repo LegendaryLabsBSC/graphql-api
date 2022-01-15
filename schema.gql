@@ -32,9 +32,9 @@ type PromoCounts {
 
 type RedeemablePromoTickets {
   promoName: String!
-  promoId: String!
-  ticketsCount: String!
-  promoClaimed: String
+  promoId: Int!
+  ticketCount: Int!
+  promoClaimed: Boolean!
 }
 
 type AccessControlRoles {

@@ -1,19 +1,19 @@
-import { ObjectType, Field, PickType } from '@nestjs/graphql';
+import { ObjectType, Field, Int, PickType } from '@nestjs/graphql';
 import { PromoEvent } from '../promo-event/promo-event.model';
 
 @ObjectType()
 export class RedeemablePromoTickets extends PickType(PromoEvent, [
   'promoName',
 ] as const) {
-  @Field()
-  promoId: string;
+  @Field((type) => Int)
+  promoId: number;
 
   @Field()
   promoName: string;
 
-  @Field((type) => String)
-  ticketsCount: bigint;
+  @Field((type) => Int)
+  ticketCount: number;
 
-  @Field((type) => String, { nullable: true })
-  promoClaimed?: boolean;
+  @Field()
+  promoClaimed: boolean;
 }

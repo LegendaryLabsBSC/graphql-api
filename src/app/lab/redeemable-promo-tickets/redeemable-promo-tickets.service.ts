@@ -3,43 +3,54 @@ import { RedeemablePromoTickets } from './redeemable-promo-tickets.model';
 import { PromoCounts } from '../promo-counts/promo-counts.model';
 import { PromoEvent } from '../promo-event/promo-event.model';
 import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
+import { PromoEventService } from '../promo-event/promo-event.service';
+/**
+ * todo?:
+ * can import other services but tends to slow things
+ * down more than calling directly from contract
+ */
 
 @Injectable()
 export class RedeemablePromoTicketsService {
-  parseData(data: RedeemablePromoTickets): RedeemablePromoTickets {
-    const redeemableTickets: any = {};
+  async fetchPromoTicketData(
+    promoId: string,
+    address: string,
+  ): Promise<[string, string]> {
+    let tickets: bigint;
+    let promoName: string;
 
-    redeemableTickets['promoId'] = data.promoId;
-    redeemableTickets['promoName'] = data.promoName;
-    redeemableTickets['ticketsCount'] = data.ticketsCount.toString();
+    try {
+      promoName = (await lab.admin.fetchPromoEvent(promoId)).promoName;
+      tickets = await lab.admin.fetchRedeemableTickets(promoId, address);
+    } catch (e) {
+      if (e.reason === 'Promo Event Has Closed') {
+        promoName = 'Promo Event Closed';
+        tickets = BigInt(0);
+      } else {
+        throw new Error('Unknown API Error Occurred');
+      }
+    }
 
-    return redeemableTickets;
+    const ticketCount: string = tickets.toString();
+
+    return [promoName, ticketCount];
   }
 
   async fetchRedeemablePromoTickets(
     promoId: string,
     address: string,
   ): Promise<RedeemablePromoTickets> {
-    let ticketsCount: bigint;
-    let promoName: string;
-
-    try {
-      ticketsCount = await lab.admin.fetchRedeemableTickets(promoId, address);
-      promoName = (await lab.admin.fetchPromoEvent(promoId)).promoName;
-    } catch (error) {
-      ticketsCount = BigInt(0);
-      promoName = 'Promo Event Closed';
-    }
-
-    const redeemableTickets: RedeemablePromoTickets = this.parseData({
+    const [promoName, ticketCount] = await this.fetchPromoTicketData(
       promoId,
-      promoName,
-      ticketsCount,
-    });
+      address,
+    );
 
-    redeemableTickets['promoClaimed'] = (
-      await lab.admin.isClaimed(promoId, address)
-    ).toString();
+    const redeemableTickets: RedeemablePromoTickets = {
+      promoId: parseInt(promoId),
+      promoName: promoName,
+      ticketCount: parseInt(ticketCount),
+      promoClaimed: await lab.admin.isClaimed(promoId, address),
+    };
 
     return redeemableTickets;
   }
@@ -47,23 +58,18 @@ export class RedeemablePromoTicketsService {
   async fetchAllRedeemablePromoTickets(
     address: string,
   ): Promise<RedeemablePromoTickets[]> {
-    let allPromoTickets: RedeemablePromoTickets[] = [];
+    const allPromoTickets: RedeemablePromoTickets[] = [];
 
     const countsData: PromoCounts = await lab.admin.fetchPromoCounts();
 
     for (let i = 1; i <= countsData[0]; i++) {
-      const promoIndex: string = i.toString();
+      const promoEvent: PromoEvent = await lab.admin.fetchPromoEvent(`${i}`);
 
-      const promoEvent: PromoEvent = await lab.admin.fetchPromoEvent(
-        promoIndex,
-      );
-
-      // const isPromoClosed: boolean = promoEvent.isPromoClosed;
-      const isPromoClosed: boolean = false
+      const isPromoClosed: boolean = promoEvent.isPromoClosed;
 
       if (isPromoClosed === false) {
         const redeemableTickets: RedeemablePromoTickets =
-          await this.fetchRedeemablePromoTickets(promoIndex, address);
+          await this.fetchRedeemablePromoTickets(`${i}`, address);
 
         allPromoTickets.push(redeemableTickets);
       }

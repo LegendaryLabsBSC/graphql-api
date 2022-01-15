@@ -3,6 +3,6 @@ import { RedeemablePromoTicketsService } from './redeemable-promo-tickets.servic
 import { RedeemablePromoTicketsResolver } from './redeemable-promo-tickets.resolver';
 
 @Module({
-  providers: [RedeemablePromoTicketsService, RedeemablePromoTicketsResolver]
+  providers: [RedeemablePromoTicketsService, RedeemablePromoTicketsResolver],
 })
 export class RedeemablePromoTicketsModule {}
