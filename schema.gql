@@ -64,6 +64,12 @@ type TokensPending {
   amount: String!
 }
 
+type MatchingCounts {
+  matchingIds: String!
+  matchingsClosed: String!
+  matchingsCancelled: String!
+}
+
 type MarketplaceRules {
   royaltyFee: String!
   marketPlaceFee: String!
@@ -280,4 +286,5 @@ type Query {
   listingCounts: ListingCounts!
   legendMatching(id: String!): LegendMatching!
   tokensPending: TokensPending!
+  matchingCounts: MatchingCounts!
 }
