@@ -12,9 +12,7 @@ export class PromoEventResolver {
   }
 
   @Query((returns) => [PromoEvent])
-  async allPromoEvents(
-    @Args('filter') filter: string,
-  ) {
-    return (await this.promoEventService.fetchAllPromoEvents(filter)) || [];
+  async allPromoEvents(@Args('filter') filter: string) {
+    return await this.promoEventService.fetchAllPromoEvents(filter);
   }
 }

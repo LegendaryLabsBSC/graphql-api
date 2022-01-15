@@ -58,7 +58,8 @@ export class RedeemablePromoTicketsService {
         promoIndex,
       );
 
-      const isPromoClosed: boolean = promoEvent.isPromoClosed;
+      // const isPromoClosed: boolean = promoEvent.isPromoClosed;
+      const isPromoClosed: boolean = false
 
       if (isPromoClosed === false) {
         const redeemableTickets: RedeemablePromoTickets =

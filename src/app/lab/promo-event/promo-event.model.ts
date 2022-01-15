@@ -1,11 +1,11 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, Int, Float } from '@nestjs/graphql';
 
 @ObjectType()
 export class PromoEvent {
   @Field()
   promoName: string;
 
-  @Field((type) => String)
+  @Field((type) => Int)
   promoId: bigint;
 
   @Field((type) => String)
@@ -14,25 +14,25 @@ export class PromoEvent {
   @Field((type) => String)
   expireTime: bigint;
 
-  @Field((type) => String)
+  @Field()
   isUnrestricted: boolean;
 
-  @Field((type) => String)
+  @Field()
   isTicketLimit: boolean;
 
-  @Field((type) => String)
+  @Field()
   isPromoClosed: boolean;
 
-  @Field((type) => String)
+  @Field((type) => Int)
   ticketsClaimed: bigint;
 
-  @Field((type) => String)
+  @Field((type) => Int)
   ticketsRedeemed: bigint;
 
-  @Field((type) => Int)
+  @Field((type) => Float)
   lengthInDays: number;
 
-  @Field((type) => String, { nullable: true })
+  @Field((type) => Int, { nullable: true })
   maxTicketsDispensable: bigint;
 
   @Field()

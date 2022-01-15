@@ -1,10 +1,10 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Int, Field } from '@nestjs/graphql';
 
 @ObjectType()
 export class PromoCounts {
-  @Field()
-  totalPromos: string;
+  @Field((type) => Int)
+  totalPromos: number;
 
-  @Field()
-  promosClosed: string;
+  @Field((type) => Int)
+  promosClosed: number;
 }

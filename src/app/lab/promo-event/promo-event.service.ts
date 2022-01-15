@@ -1,19 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { PromoEvent } from './promo-event.model';
-import { PromoCounts } from '../promo-counts/promo-counts.model';
+import { PromoCountsService } from '../promo-counts/promo-counts.service';
 import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
 @Injectable()
 export class PromoEventService {
+  constructor(private readonly promoCountsService: PromoCountsService) {}
   parseData(data: PromoEvent): PromoEvent {
     const promoEvent: any = {};
 
-    const keys = Object.keys(data).slice(9);
-    const values = `${data}`.split(',');
-
-    keys.forEach((key: string, index) => {
-      promoEvent[key] = values[index];
-    });
+    promoEvent['promoName'] = data.promoName;
+    promoEvent['promoId'] = data.promoId.toString();
+    promoEvent['startTime'] = data.startTime.toString();
+    promoEvent['expireTime'] = data.expireTime.toString();
+    promoEvent['isUnrestricted'] = data.isUnrestricted;
+    promoEvent['isPromoClosed'] = data.isPromoClosed;
+    promoEvent['ticketsClaimed'] = data.ticketsClaimed.toString();
+    promoEvent['ticketsRedeemed'] = data.ticketsRedeemed.toString();
 
     promoEvent['lengthInDays'] =
       (parseInt(promoEvent.expireTime) - parseInt(promoEvent.startTime)) /
@@ -23,25 +26,29 @@ export class PromoEventService {
   }
 
   async fetchPromoEvent(id: string): Promise<PromoEvent> {
-    let promoEvent: PromoEvent;
+    const fetchMaxTickets = async (id: string): Promise<bigint> => {
+      let maxTickets: bigint;
 
-    promoEvent = await lab.admin.fetchPromoEvent(id);
-    promoEvent = this.parseData(promoEvent);
-
-    let maxTickets: bigint;
-
-    try {
-      maxTickets = (await lab.admin.fetchMaxTicketsDispensable(id)).toString();
-    } catch (e) {
-      if (e.reason === 'Promo Event Does Not Have A Max Ticket Limit') {
-        maxTickets = null;
-      } else {
-        throw new Error('Unknown API Error Occurred');
+      try {
+        maxTickets = (
+          await lab.admin.fetchMaxTicketsDispensable(id)
+        ).toString();
+      } catch (e) {
+        if (e.reason === 'Promo Event Does Not Have A Max Ticket Limit') {
+          maxTickets = null;
+        } else {
+          throw new Error('Unknown API Error Occurred');
+        }
       }
-    } finally {
-      promoEvent['maxTicketsDispensable'] = maxTickets;
-    }
 
+      return maxTickets;
+    };
+
+    const promoData = await lab.admin.fetchPromoEvent(id);
+
+    const promoEvent: PromoEvent = await this.parseData(promoData);
+
+    promoEvent['maxTicketsDispensable'] = await fetchMaxTickets(id);
     promoEvent['legendsSkipIncubation'] = await lab.admin.isPromoIncubated(id);
 
     return promoEvent;
@@ -53,10 +60,10 @@ export class PromoEventService {
         case 'all':
           return true;
         case 'open':
-          if (data.isPromoClosed.toString() === 'false') return true; //todo
+          if (data.isPromoClosed === false) return true;
           break;
         case 'closed':
-          if (data.isPromoClosed.toString() === 'true') return true;
+          if (data.isPromoClosed === true) return true;
           break;
         default:
           return false;
@@ -65,12 +72,12 @@ export class PromoEventService {
 
     const allPromos: PromoEvent[] = [];
 
-    const countsData: PromoCounts = await lab.admin.fetchPromoCounts();
+    const totalPromos: number = (
+      await this.promoCountsService.fetchPromoCounts()
+    ).totalPromos;
 
-    for (let i = 1; i <= countsData[0]; i++) {
-      const promoIndex: string = i.toString();
-
-      const promoEvent: PromoEvent = await this.fetchPromoEvent(promoIndex);
+    for (let i = 1; i <= totalPromos; i++) {
+      const promoEvent: PromoEvent = await this.fetchPromoEvent(`${i}`);
 
       if (filterData(filter, promoEvent) === true) allPromos.push(promoEvent);
     }

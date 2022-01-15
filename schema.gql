@@ -12,22 +12,22 @@ type ChildContracts {
 
 type PromoEvent {
   promoName: String!
-  promoId: String!
+  promoId: Int!
   startTime: String!
   expireTime: String!
-  isUnrestricted: String!
-  isTicketLimit: String!
-  isPromoClosed: String!
-  ticketsClaimed: String!
-  ticketsRedeemed: String!
-  lengthInDays: Int!
-  maxTicketsDispensable: String
+  isUnrestricted: Boolean!
+  isTicketLimit: Boolean!
+  isPromoClosed: Boolean!
+  ticketsClaimed: Int!
+  ticketsRedeemed: Int!
+  lengthInDays: Float!
+  maxTicketsDispensable: Int
   legendsSkipIncubation: Boolean!
 }
 
 type PromoCounts {
-  totalPromos: String!
-  promosClosed: String!
+  totalPromos: Int!
+  promosClosed: Int!
 }
 
 type RedeemablePromoTickets {
