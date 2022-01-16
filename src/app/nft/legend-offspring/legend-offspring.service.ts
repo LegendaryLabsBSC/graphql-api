@@ -1,30 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { LegendOffspring } from './legend-offspring.model';
 import { TotalNFTSupplyService } from '../total-nft-supply/total-nft-supply.service';
-import { LegendMetadataService } from '../legend-metadata/legend-metadata.service';
 import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
 @Injectable()
 export class LegendOffspringService {
-  constructor(
-    private readonly totalNFTSupplyService: TotalNFTSupplyService,
-    private readonly legendMetadataService: LegendMetadataService,
-  ) {}
+  constructor(private readonly totalNFTSupplyService: TotalNFTSupplyService) {}
   async fetchLegendOffspring(id: string): Promise<LegendOffspring> {
-    const legendOffspring: any = {};
-    const offspring: string[] = [];
+    const offspring: number[] = [];
 
-    const totalSupply: bigint = (
+    const totalSupply: number = (
       await this.totalNFTSupplyService.fetchTotalNFTSupply()
     ).total;
 
     for (let i = 1; i <= totalSupply; i++) {
       const childId = i.toString();
+
       if ((await lab.nft.isParentOf(id, childId)) === true)
-        offspring.push(childId);
+        offspring.push(Number(i));
     }
 
-    legendOffspring['offspring'] = offspring;
+    const legendOffspring: LegendOffspring = {
+      offspringIds: offspring,
+    };
 
     return legendOffspring;
   }

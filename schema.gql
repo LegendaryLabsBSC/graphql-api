@@ -237,7 +237,7 @@ type BlendingCost {
 }
 
 type TotalNFTSupply {
-  total: String!
+  total: Int!
 }
 
 type OwnerOfLegend {
@@ -245,7 +245,7 @@ type OwnerOfLegend {
 }
 
 type LegendOffspring {
-  offspring: [String!]!
+  offspringIds: [Int!]!
 }
 
 type Query {
