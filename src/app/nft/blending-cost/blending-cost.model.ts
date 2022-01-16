@@ -1,10 +1,10 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class BlendingCost {
-  @Field((type) => String)
+  @Field((type) => Int)
   cost: number;
 
-  @Field({ nullable: true })
-  ezCost?: string;
+  @Field()
+  ezCost: string;
 }

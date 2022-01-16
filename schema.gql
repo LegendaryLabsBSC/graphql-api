@@ -232,8 +232,8 @@ type BlendingSlotsUsed {
 }
 
 type BlendingCost {
-  cost: String!
-  ezCost: String
+  cost: Int!
+  ezCost: String!
 }
 
 type TotalNFTSupply {
