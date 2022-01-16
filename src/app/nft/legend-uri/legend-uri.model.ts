@@ -1,13 +1,13 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class LegendURI {
-  @Field((type) => String)
-  id: bigint;
+  @Field((type) => Int)
+  id: number;
 
   @Field()
   image: string;
 
   @Field({ nullable: true })
-  payload?: string;
+  payload: string;
 }

@@ -180,13 +180,13 @@ type LegendMetadata {
 }
 
 type LegendURI {
-  id: String!
+  id: Int!
   image: String!
   payload: String
 }
 
 type LegendNFT {
-  id: String!
+  id: Int!
   image: String!
   season: String!
   prefix: String!

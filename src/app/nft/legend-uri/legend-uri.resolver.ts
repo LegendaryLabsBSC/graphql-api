@@ -4,10 +4,10 @@ import { LegendURI } from './legend-uri.model';
 
 @Resolver()
 export class LegendURIResolver {
-  constructor(private readonly legendURIService: LegendURIService) { }
+  constructor(private readonly legendURIService: LegendURIService) {}
 
   @Query((returns) => LegendURI)
-  async legendURI(@Args('id', { type: () => String }) id: string) {
-    return await this.legendURIService.fetchLegendURI(id)
+  async legendURI(@Args('id') id: string) {
+    return await this.legendURIService.fetchLegendURI(id);
   }
 }

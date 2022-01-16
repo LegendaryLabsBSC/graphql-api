@@ -4,41 +4,58 @@ import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
 @Injectable()
 export class LegendURIService {
-  nonExistentLegend: any = {
-    id: '0',
+  nonexistentLegend: any = {
+    id: 0,
     image:
       'https://gateway.pinata.cloud/ipfs/QmNks6pnRDgPRyTjRFuVy8mCb8WJ1yrY9JLwgTKuJzdsrF',
-    payload: 'Invalid Legend ID',
+    payload: 'Nonexistent Legend ID',
   };
 
-  parseData(data: string, id: string): LegendURI {
+  parseData(data: string, legendId: string): LegendURI {
+    let id: string;
+    let image: string;
+    let payload: string;
+
     const pinataGateway = 'https://gateway.pinata.cloud/ipfs/';
 
-    const uri: any = {};
-
-    // No payload if hatched: Not set in stone
+    // No payload if hatched; Not set in stone
     if (/[,]/.test(data) === false) {
-      uri['id'] = id;
-      uri['image'] = pinataGateway + data.slice(7);
+      id = legendId;
+      image = pinataGateway + data.slice(7);
     } else {
-      const uriData: string[] = data.split(',', 3);
+      const uri: string[] = data.split(',', 3);
 
-      uri['id'] = uriData[0];
-      uri['image'] = pinataGateway + uriData[1].slice(7);
-      uri['payload'] = uriData[2];
+      id = uri[0];
+      image = pinataGateway + uri[1].slice(7);
+      payload = uri[2];
     }
 
-    return uri;
+    const legendURI: LegendURI = {
+      id: parseInt(id),
+      image: image,
+      payload: payload,
+    };
+
+    return legendURI;
   }
 
   async fetchLegendURI(id: string): Promise<LegendURI> {
-    try {
-      const URIData: string = await lab.nft.fetchLegendURI(id);
-      const legendURI: LegendURI = this.parseData(URIData, id);
+    let URIData: string;
 
-      return legendURI;
-    } catch (error) {
-      return this.nonExistentLegend;
+    try {
+      URIData = await lab.nft.fetchLegendURI(id);
+    } catch (e) {
+      if (e.reason === 'missing revert data in call exception') {
+        const legendURI: LegendURI = this.nonexistentLegend;
+
+        return legendURI;
+      } else {
+        throw new Error('Unknown API Error Occurred');
+      }
     }
+
+    const legendURI: LegendURI = this.parseData(URIData, id);
+
+    return legendURI;
   }
 }
