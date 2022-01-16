@@ -4,49 +4,57 @@ import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
 @Injectable()
 export class LegendMetadataService {
-
-  nonExistentLegend: any = {
-    id: "0",
-    season: "Invalid Legend ID",
-    prefix: "Invalid Legend ID",
-    postfix: "Invalid Legend ID",
-    parent1: "0",
-    parent2: "0",
-    birthday: "0",
-    blendingInstancesUsed: "0",
-    totalOffspring: "0",
-    legendCreator: "Invalid Legend ID",
+  nonexistentLegend: any = {
+    id: 0,
+    season: 'Nonexistent Legend ID',
+    prefix: 'Nonexistent Legend ID',
+    postfix: 'Nonexistent Legend ID',
+    parent1: 0,
+    parent2: 0,
+    birthday: 'Unborn',
+    blendingInstancesUsed: 0,
+    totalOffspring: 0,
+    legendCreator: 'Nonexistent Legend ID',
     isLegendary: false,
     isHatched: false,
-    isDestroyed: false
-  }
+    isDestroyed: false,
+  };
 
-  parseData(data: LegendMetadata): LegendMetadata {
-    const metadata: any = {};
+  parseData(data: any): LegendMetadata {
+    //todo: ! convert birthday to calendar date ; based off block, non exactly Unix time
 
-    //todo: convert birthday to calendar date
-
-    const keys = Object.keys(data).slice(12, 24);
-    keys.splice(4, 1, 'parent1', 'parent2');
-
-    const values = `${data}`.split(',', 13);
-
-    keys.forEach((key: any, index) => {
-      metadata[key] = values[index];
-    });
+    const metadata: LegendMetadata = {
+      id: Number(data.id),
+      season: data.season,
+      prefix: data.prefix,
+      postfix: data.postfix,
+      parent1: Number(data.parents[0]),
+      parent2: Number(data.parents[1]),
+      birthday: data.birthday.toString(),
+      blendingInstancesUsed: Number(data.blendingInstancesUsed),
+      totalOffspring: Number(data.totalOffspring),
+      legendCreator: data.legendCreator,
+      isLegendary: data.isLegendary,
+      isHatched: data.isHatched,
+      isDestroyed: data.isDestroyed,
+    };
 
     return metadata;
-
   }
 
   async fetchLegendMetadata(id: string): Promise<LegendMetadata> {
-    let legendData: any = {}
+    let legendData: any;
 
     try {
-      legendData = await lab.nft.fetchLegendMetadata(id)
-    } catch (error) {
-      // throw new ApolloError('Legend ID Does Not Exist ', 'MY_ERROR_CODE');
-      return this.nonExistentLegend
+      legendData = await lab.nft.fetchLegendMetadata(id);
+    } catch (e) {
+      if (e.reason === 'missing revert data in call exception') {
+        const legendMetadata: LegendMetadata = this.nonexistentLegend;
+
+        return legendMetadata;
+      } else {
+        throw new Error('Unknown API Error Occurred');
+      }
     }
 
     const legendMetadata: LegendMetadata = this.parseData(legendData);

@@ -164,19 +164,19 @@ type BlendingRules {
 }
 
 type LegendMetadata {
-  id: String!
+  id: Int!
   season: String!
   prefix: String!
   postfix: String!
-  parent1: String!
-  parent2: String!
+  parent1: Int!
+  parent2: Int!
   birthday: String!
-  blendingInstancesUsed: String!
-  totalOffspring: String!
+  blendingInstancesUsed: Int!
+  totalOffspring: Int!
   legendCreator: String!
-  isLegendary: String!
-  isHatched: String!
-  isDestroyed: String!
+  isLegendary: Boolean!
+  isHatched: Boolean!
+  isDestroyed: Boolean!
 }
 
 type LegendURI {
@@ -191,15 +191,15 @@ type LegendNFT {
   season: String!
   prefix: String!
   postfix: String!
-  parent1: String!
-  parent2: String!
+  parent1: Int!
+  parent2: Int!
   birthday: String!
-  blendingInstancesUsed: String!
-  totalOffspring: String!
+  blendingInstancesUsed: Int!
+  totalOffspring: Int!
   legendCreator: String!
-  isLegendary: String!
-  isHatched: String!
-  isDestroyed: String!
+  isLegendary: Boolean!
+  isHatched: Boolean!
+  isDestroyed: Boolean!
 }
 
 type IncubationViews {

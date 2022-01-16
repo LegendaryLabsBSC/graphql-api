@@ -1,9 +1,9 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class LegendMetadata {
-  @Field((type) => String)
-  id: bigint;
+  @Field((type) => Int)
+  id: number;
 
   @Field()
   season: string;
@@ -14,35 +14,30 @@ export class LegendMetadata {
   @Field()
   postfix: string;
 
-  // @Field((type) => [String])
-  // parents: [bigint];
+  @Field((type) => Int)
+  parent1: number;
 
-
-  @Field((type) => String)
-  parent1: bigint;
-
-  @Field((type) => String)
-  parent2: bigint;
+  @Field((type) => Int)
+  parent2: number;
 
   @Field((type) => String)
   birthday: bigint;
 
-  @Field((type) => String)
-  blendingInstancesUsed: bigint;
+  @Field((type) => Int)
+  blendingInstancesUsed: number;
 
-  @Field((type) => String)
-  totalOffspring: bigint;
+  @Field((type) => Int)
+  totalOffspring: number;
 
   @Field()
   legendCreator: string;
 
-  @Field((type) => String)
+  @Field()
   isLegendary: boolean;
 
-  @Field((type) => String)
+  @Field()
   isHatched: boolean;
 
-  @Field((type) => String)
+  @Field()
   isDestroyed: boolean;
 }
-
