@@ -4,23 +4,18 @@ import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
 @Injectable()
 export class IncubationViewsService {
-  parseData(data: string[]): IncubationViews {
-    const incubationViews: any = {};
+  async fetchIncubationViews(): Promise<IncubationViews> {
+    const viewsData: string[] = await lab.nft.fetchIncubationViews();
 
     const pinataGateway = 'https://gateway.pinata.cloud/ipfs/';
 
-    incubationViews['view1'] = pinataGateway + data[0].slice(7);
-    incubationViews['view2'] = pinataGateway + data[1].slice(7);
-    incubationViews['view3'] = pinataGateway + data[2].slice(7);
-    incubationViews['view4'] = pinataGateway + data[3].slice(7);
-    incubationViews['view5'] = pinataGateway + data[4].slice(7);
-
-    return incubationViews;
-  }
-
-  async fetchIncubationViews(): Promise<IncubationViews> {
-    const viewsData: string[] = await lab.nft.fetchIncubationViews();
-    const incubationViews: IncubationViews = this.parseData(viewsData);
+    const incubationViews: IncubationViews = {
+      view1: pinataGateway + viewsData[0].slice(7),
+      view2: pinataGateway + viewsData[1].slice(7),
+      view3: pinataGateway + viewsData[2].slice(7),
+      view4: pinataGateway + viewsData[3].slice(7),
+      view5: pinataGateway + viewsData[4].slice(7),
+    };
 
     return incubationViews;
   }
