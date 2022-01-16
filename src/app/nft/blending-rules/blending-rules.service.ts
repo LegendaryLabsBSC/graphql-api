@@ -15,18 +15,18 @@ export class BlendingRulesService {
       return kinBlendingLevel[blendingLevel];
     };
 
-    const blendingRules: any = {};
-
-    blendingRules['kinBlendingLevel'] = parseKinBlendingLevel(data[0]);
-    blendingRules['blendingLimit'] = data[1].toString();
-    blendingRules['baseBlendingCost'] = data[2].toString();
-    blendingRules['incubationPeriod'] = data[3].toString();
+    const blendingRules: BlendingRules = {
+      kinBlendingLevel: parseKinBlendingLevel(data[0]),
+      blendingLimit: Number(data[1]),
+      baseBlendingCost: Number(data[2]),
+      incubationPeriod: Number(data[3]),
+    };
 
     return blendingRules;
   }
 
   async fetchBlendingRules(): Promise<BlendingRules> {
-    const rulesData: BlendingRules = await lab.nft.fetchBlendingRules();
+    const rulesData: any = await lab.nft.fetchBlendingRules();
     const blendingRules: BlendingRules = this.parseData(rulesData);
 
     return blendingRules;

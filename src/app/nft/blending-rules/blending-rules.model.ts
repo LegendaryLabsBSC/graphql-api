@@ -1,16 +1,16 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class BlendingRules {
-  @Field((type) => String)
-  kinBlendingLevel: number;
+  @Field()
+  kinBlendingLevel: string;
 
-  @Field((type) => String)
-  blendingLimit: bigint;
+  @Field((type) => Int)
+  blendingLimit: number;
 
-  @Field((type) => String)
-  baseBlendingCost: bigint;
+  @Field((type) => Int)
+  baseBlendingCost: number;
 
-  @Field((type) => String)
-  incubationPeriod: bigint;
+  @Field((type) => Int)
+  incubationPeriod: number;
 }

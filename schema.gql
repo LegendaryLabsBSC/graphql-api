@@ -158,9 +158,9 @@ type TokenDetails {
 
 type BlendingRules {
   kinBlendingLevel: String!
-  blendingLimit: String!
-  baseBlendingCost: String!
-  incubationPeriod: String!
+  blendingLimit: Int!
+  baseBlendingCost: Int!
+  incubationPeriod: Int!
 }
 
 type LegendMetadata {
