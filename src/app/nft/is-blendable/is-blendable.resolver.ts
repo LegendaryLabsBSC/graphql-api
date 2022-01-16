@@ -7,7 +7,7 @@ export class IsBlendableResolver {
   constructor(private readonly isBlendableService: IsBlendableService) {}
 
   @Query((returns) => IsBlendable)
-  async isBlendable(@Args('id', { type: () => String }) id: string) {
+  async isBlendable(@Args('id') id: string) {
     return await this.isBlendableService.fetchIsBlendable(id);
   }
 }

@@ -7,27 +7,36 @@ import { BlendingRulesService } from '../blending-rules/blending-rules.service';
 export class IsBlendableService {
   constructor(private readonly blendingRulesService: BlendingRulesService) {}
   async fetchIsBlendable(id: string): Promise<IsBlendable> {
-    const isBlendable: any = {};
-
     if ((await lab.admin.isHatched(id)) === false) {
-      isBlendable['isBlendable'] = false;
-      isBlendable['unableReason'] = 'Legend NFT Not Hatched';
+      const isBlendable: IsBlendable = {
+        blendable: false,
+        unableReason: 'Legend NFT Not Hatched',
+      };
 
       return isBlendable;
     }
 
+    let blendable: boolean;
+    let unableReason: string;
+
     const blendingSlotsUsed: bigint = await lab.admin.fetchBlendingCount(id);
-    const maxBlendingSlotsUsed: bigint = (
+    const maxBlendingSlotsUsed: number = (
       await this.blendingRulesService.fetchBlendingRules()
     ).blendingLimit;
 
+    // todo: make sure max+1/max is not possible
     if (blendingSlotsUsed < maxBlendingSlotsUsed) {
-      isBlendable['isBlendable'] = true;
+      blendable = true;
     } else {
-      isBlendable['isBlendable'] = false;
-      isBlendable['unableReason'] =
+      blendable = false;
+      unableReason =
         'Max Blending Slots Used: Legend needs rejuvenation before blending again.';
     }
+
+    const isBlendable: IsBlendable = {
+      blendable: blendable,
+      unableReason: unableReason,
+    };
 
     return isBlendable;
   }

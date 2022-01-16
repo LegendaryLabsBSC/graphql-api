@@ -216,7 +216,7 @@ type IsHatchable {
 }
 
 type IsBlendable {
-  isBlendable: Boolean!
+  blendable: Boolean!
   unableReason: String
 }
 
