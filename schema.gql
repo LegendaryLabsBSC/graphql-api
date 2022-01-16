@@ -226,8 +226,8 @@ type IsListable {
 }
 
 type BlendingSlotsUsed {
-  blendingSlotsUsed: String!
-  maxBlendingSlotsUsed: String!
+  blendingSlotsUsed: Int!
+  maxBlendingSlots: Int!
   figure: String!
 }
 

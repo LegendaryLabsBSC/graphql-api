@@ -7,19 +7,17 @@ import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 export class BlendingSlotsUsedService {
   constructor(private readonly blendingRulesService: BlendingRulesService) {}
   async fetchBlendingSlotsUsed(id: string): Promise<BlendingSlotsUsed> {
-    const blendingSlotsUsed: any = {};
-
     const blendingSlotCount: bigint = await lab.admin.fetchBlendingCount(id);
 
-    const maxBlendingSlotCount: bigint = (
+    const maxBlendingSlotCount: number = (
       await this.blendingRulesService.fetchBlendingRules()
     ).blendingLimit;
 
-    blendingSlotsUsed['blendingSlotsUsed'] = blendingSlotCount.toString();
-    blendingSlotsUsed['maxBlendingSlotsUsed'] = maxBlendingSlotCount.toString();
-    blendingSlotsUsed[
-      'figure'
-    ] = `${blendingSlotCount}/${maxBlendingSlotCount}`;
+    const blendingSlotsUsed: BlendingSlotsUsed = {
+      blendingSlotsUsed: Number(blendingSlotCount),
+      maxBlendingSlots: maxBlendingSlotCount,
+      figure: `${blendingSlotCount}/${maxBlendingSlotCount}`,
+    };
 
     return blendingSlotsUsed;
   }

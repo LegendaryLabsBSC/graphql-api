@@ -1,12 +1,12 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class BlendingSlotsUsed {
-  @Field((type) => String)
-  blendingSlotsUsed: bigint;
+  @Field((type) => Int)
+  blendingSlotsUsed: number;
 
-  @Field((type) => String)
-  maxBlendingSlotsUsed: bigint;
+  @Field((type) => Int)
+  maxBlendingSlots: number;
 
   @Field()
   figure: string;
