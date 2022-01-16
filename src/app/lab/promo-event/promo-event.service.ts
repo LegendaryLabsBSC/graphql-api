@@ -14,6 +14,7 @@ export class PromoEventService {
     promoEvent['startTime'] = data.startTime.toString();
     promoEvent['expireTime'] = data.expireTime.toString();
     promoEvent['isUnrestricted'] = data.isUnrestricted;
+    promoEvent['isTicketLimit'] = data.isUnrestricted;
     promoEvent['isPromoClosed'] = data.isPromoClosed;
     promoEvent['ticketsClaimed'] = data.ticketsClaimed.toString();
     promoEvent['ticketsRedeemed'] = data.ticketsRedeemed.toString();
@@ -53,7 +54,8 @@ export class PromoEventService {
 
     return promoEvent;
   }
-
+  
+  //todo: ? add 'expired' event filter
   async fetchAllPromoEvents(filter: string): Promise<PromoEvent[]> {
     const filterData = (filter: string, data: PromoEvent): boolean => {
       switch (filter) {
