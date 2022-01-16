@@ -1,7 +1,7 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class TotalNFTSupply {
-  @Field((type) => String)
-  total: bigint;
+  @Field((type) => Int)
+  total: number;
 }
