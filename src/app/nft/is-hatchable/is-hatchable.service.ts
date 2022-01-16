@@ -5,17 +5,21 @@ import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 @Injectable()
 export class IsHatchableService {
   async fetchIsHatchable(id: string): Promise<IsHatchable> {
-    const isHatchable: any = {};
+    let hatchable: boolean;
+    let unableReason: string;
 
     if ((await lab.admin.isHatched(id)) === true) {
-      isHatchable['isHatchable'] = false;
-      isHatchable['unableReason'] = 'Legend NFT Already Hatched';
+      hatchable = false;
+      unableReason = 'Legend NFT Already Hatched';
     } else {
-      isHatchable['isHatchable'] = await lab.nft.isHatchable(id);
+      hatchable = await lab.nft.isHatchable(id);
     }
 
-    return isHatchable;
+    const isHatchable: IsHatchable = {
+      hatchable: hatchable,
+      unableReason: unableReason,
+    };
 
-    //todo: fix optimizer error messeages ; redeploy contracts ; catch errors and parse them accordingly
+    return isHatchable;
   }
 }

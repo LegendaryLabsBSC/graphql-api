@@ -211,7 +211,7 @@ type IncubationViews {
 }
 
 type IsHatchable {
-  isHatchable: Boolean!
+  hatchable: Boolean!
   unableReason: String
 }
 

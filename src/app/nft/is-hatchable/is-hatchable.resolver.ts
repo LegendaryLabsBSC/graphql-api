@@ -7,7 +7,7 @@ export class IsHatchableResolver {
   constructor(private readonly isHatchableService: IsHatchableService) {}
 
   @Query((returns) => IsHatchable)
-  async isHatchable(@Args('id', { type: () => String }) id: string) {
+  async isHatchable(@Args('id') id: string) {
     return await this.isHatchableService.fetchIsHatchable(id);
   }
 }
