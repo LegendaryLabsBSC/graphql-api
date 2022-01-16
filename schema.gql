@@ -221,7 +221,7 @@ type IsBlendable {
 }
 
 type IsListable {
-  isListable: Boolean!
+  listable: Boolean!
   unableReason: String
 }
 
