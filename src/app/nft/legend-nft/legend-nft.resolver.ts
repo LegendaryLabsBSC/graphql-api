@@ -13,13 +13,11 @@ export class LegendNFTResolver {
 
   @Query((returns) => [LegendNFT])
   async allLegendNFTs(@Args('filter') filter: string) {
-    return (await this.legendNFTService.fetchAllLegendNFTs(filter)) || [];
+    return await this.legendNFTService.fetchAllLegendNFTs(filter);
   }
 
   @Query((returns) => [LegendNFT])
-  async legendNFTsByOwner(
-    @Args('address') address: string,
-  ) {
-    return (await this.legendNFTService.fetchLegendNFTsByOwner(address)) || [];
+  async legendNFTsByOwner(@Args('address') address: string) {
+    return await this.legendNFTService.fetchLegendNFTsByOwner(address);
   }
 }

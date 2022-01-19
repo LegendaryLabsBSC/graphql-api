@@ -20,21 +20,19 @@ export class LegendNFTService {
 
     const legendURI: LegendURI = await this.legendURIService.fetchLegendURI(id);
 
-    const legendNFT = { ...legendMetadata, ...legendURI };
+    const legendNFT: LegendNFT = { ...legendMetadata, ...legendURI };
 
     return legendNFT;
   }
 
-  //todo: make filters
+  //todo: ! make filters ; all ; alive ; legendary ; destoryed ;; etc
   async fetchAllLegendNFTs(filter: string): Promise<LegendNFT[]> {
     const allLegends: LegendNFT[] = [];
 
     const totalSupply: bigint = await lab.nft.totalSupply();
 
-    for (let i = 1; i < totalSupply; i++) {
-      const legendIndex: string = (i + 1).toString(); //! todo: make correct when new contracts deployed
-
-      const legendNFT = await this.fetchLegendNFT(legendIndex);
+    for (let i = 1; i <= totalSupply; i++) {
+      const legendNFT = await this.fetchLegendNFT(`${i}`);
 
       allLegends.push(legendNFT);
     }
@@ -45,17 +43,15 @@ export class LegendNFTService {
   async fetchLegendNFTsByOwner(account: string): Promise<LegendNFT[]> {
     const userLegends: LegendNFT[] = [];
 
-    const verifiedAddress = ethers.utils.getAddress(account); //todo: handle error
-
+    const verifiedAddress: string = ethers.utils.getAddress(account);
     const balance: bigint = await lab.nft.balanceOf(verifiedAddress);
-    // todo: handle 0 balance
 
     for (let i = 0; i < balance; i++) {
       const legendId: string = (
         await lab.nft.tokenOfOwnerByIndex(account, `${i}`)
       ).toString();
 
-      const legendNFT = await this.fetchLegendNFT(legendId);
+      const legendNFT: LegendNFT = await this.fetchLegendNFT(legendId);
 
       userLegends.push(legendNFT);
     }
