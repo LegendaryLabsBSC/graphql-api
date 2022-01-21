@@ -2,11 +2,11 @@ import { ObjectType, Field } from '@nestjs/graphql';
 
 @ObjectType()
 export class MarketplaceRules {
-  @Field((type) => String)
-  royaltyFee: bigint;
+  @Field()
+  royaltyFee: string;
 
-  @Field((type) => String)
-  marketPlaceFee: bigint;
+  @Field()
+  marketPlaceFee: string;
 
   @Field((type) => String)
   offerDuration: bigint;
@@ -17,4 +17,3 @@ export class MarketplaceRules {
   @Field((type) => [String])
   auctionDurations: [bigint];
 }
-
