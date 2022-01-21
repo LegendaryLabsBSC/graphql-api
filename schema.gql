@@ -118,9 +118,9 @@ type PaymentsPending {
 }
 
 type ListingCounts {
-  listingIds: String!
-  listingsClosed: String!
-  listingsCancelled: String!
+  listingIds: Int!
+  listingsClosed: Int!
+  listingsCancelled: Int!
 }
 
 type RejuvenationRules {

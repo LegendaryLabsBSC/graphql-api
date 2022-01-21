@@ -8,9 +8,9 @@ export class ListingCountsService {
     const countsData: bigint[] = await lab.marketplace.fetchListingCounts();
 
     const listingCounts: ListingCounts = {
-      listingIds: countsData[0].toString(),
-      listingsClosed: countsData[1].toString(),
-      listingsCancelled: countsData[2].toString(),
+      listingIds: Number(countsData[0]),
+      listingsClosed: Number(countsData[1]),
+      listingsCancelled: Number(countsData[2]),
     };
 
     return listingCounts;

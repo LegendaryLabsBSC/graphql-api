@@ -1,13 +1,13 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class ListingCounts {
-  @Field()
-  listingIds: string;
+  @Field((type) => Int)
+  listingIds: number;
 
-  @Field()
-  listingsClosed: string;
+  @Field((type) => Int)
+  listingsClosed: number;
 
-  @Field()
-  listingsCancelled: string;
+  @Field((type) => Int)
+  listingsCancelled: number;
 }
