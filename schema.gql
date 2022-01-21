@@ -94,7 +94,7 @@ type AuctionDetails {
 type OfferDetails {
   expirationTime: String
   legendOwner: String
-  isAccepted: String
+  isAccepted: Boolean
 }
 
 type LegendListing {

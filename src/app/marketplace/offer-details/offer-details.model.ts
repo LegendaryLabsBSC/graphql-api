@@ -8,6 +8,6 @@ export class OfferDetails {
   @Field({ nullable: true })
   legendOwner: string;
 
-  @Field((type) => String, { nullable: true })
+  @Field( { nullable: true })
   isAccepted: boolean;
 }
