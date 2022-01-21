@@ -6,7 +6,7 @@ import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 @Injectable()
 export class PromoEventService {
   constructor(private readonly promoCountsService: PromoCountsService) {}
-  parseData(data: PromoEvent): PromoEvent {
+  parseData(data: any): PromoEvent {
     const promoEvent: any = {};
 
     promoEvent['promoName'] = data.promoName;
@@ -22,6 +22,21 @@ export class PromoEventService {
     promoEvent['lengthInDays'] =
       (parseInt(promoEvent.expireTime) - parseInt(promoEvent.startTime)) /
       86400; // One day in seconds
+
+    // const promoEvent: PromoEvent = {
+    //   promoName: data.promoName,
+    //   promoId: Number(data.promoId),
+    //   startTime: data.startTime,
+    //   expireTime: data.expireTime,
+    //   isUnrestricted: data.isUnrestricted,
+    //   isTicketLimit: data.isUnrestricted,
+    //   isPromoClosed: data.isPromoClosed,
+    //   ticketsClaimed: Number(data.ticketsClaimed),
+    //   ticketsRedeemed: Number(data.ticketsRedeemed),
+    //   lengthInDays:
+    //   (parseInt(promoEvent.expireTime) - parseInt(promoEvent.startTime)) /
+    //   86400; // One day in seconds
+    // };
 
     return promoEvent;
   }
@@ -45,7 +60,7 @@ export class PromoEventService {
       return maxTickets;
     };
 
-    const promoData = await lab.admin.fetchPromoEvent(id);
+    const promoData: any = await lab.admin.fetchPromoEvent(id);
 
     const promoEvent: PromoEvent = this.parseData(promoData);
 
@@ -54,7 +69,7 @@ export class PromoEventService {
 
     return promoEvent;
   }
-  
+
   //todo: ? add 'expired' event filter
   async fetchAllPromoEvents(filter: string): Promise<PromoEvent[]> {
     const filterData = (filter: string, data: PromoEvent): boolean => {

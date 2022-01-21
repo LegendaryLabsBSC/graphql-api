@@ -1,24 +1,24 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class AuctionDetails {
-  @Field((type) => String, { nullable: true })
-  duration: bigint;
+  @Field({ nullable: true })
+  duration: string;
 
-  @Field((type) => String, { nullable: true })
-  startingPrice: bigint;
+  @Field({ nullable: true })
+  startingPrice: string;
 
-  @Field((type) => String, { nullable: true })
-  highestBid: bigint;
+  @Field({ nullable: true })
+  highestBid: string;
 
   @Field({ nullable: true })
   highestBidder: string;
 
-  @Field((type) => String, { nullable: true })
+  @Field({ nullable: true })
   isInstantBuy: boolean;
 
-  @Field({ nullable: true })
-  durationInDays: string;
+  @Field((type) => Int, { nullable: true })
+  durationInDays: number;
 
   @Field({ nullable: true })
   instantBuyPrice: string;

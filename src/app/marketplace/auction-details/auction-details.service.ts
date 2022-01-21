@@ -4,18 +4,17 @@ import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 
 @Injectable()
 export class AuctionDetailsService {
-  parseData(data: AuctionDetails): AuctionDetails {
-    const auctionDetails: any = {};
+  parseData(data: any): AuctionDetails {
+    const auctionDetails: any = {
+      duration: data.duration.toString(),
+      startingPrice: data.startingPrice.toString(),
+      highestBid: data.highestBid.toString(),
+      highestBidder: data.highestBidder,
+      isInstantBuy: data.isInstantBuy,
+      durationInDays: parseInt(data.duration) / 86400,
+    };
 
-    const keys = Object.keys(data).slice(5);
-    const values = `${data}`.split(',');
-
-    keys.forEach((key: string, index) => {
-      auctionDetails[key] = values[index];
-    });
-
-    auctionDetails['durationInDays'] =
-      parseInt(auctionDetails.duration) / 86400;
+    //todo: parse values with eth numbers
 
     return auctionDetails;
   }
@@ -24,8 +23,8 @@ export class AuctionDetailsService {
     let auctionDetails: AuctionDetails;
 
     try {
-      auctionDetails = await lab.marketplace.fetchAuctionDetails(id);
-      auctionDetails = this.parseData(auctionDetails);
+      const auctionData = await lab.marketplace.fetchAuctionDetails(id);
+      auctionDetails = this.parseData(auctionData);
 
       if (`${auctionDetails.isInstantBuy}` === 'true') {
         auctionDetails['instantBuyPrice'] = (
@@ -36,21 +35,23 @@ export class AuctionDetailsService {
       }
 
       auctionDetails['bidders'] = await lab.marketplace.fetchBidders(id);
-
       auctionDetails['isExpired'] = await lab.marketplace.isExpired(id);
-    } catch (error) {
-      // console.error(error);
-      auctionDetails = {
-        duration: null,
-        startingPrice: null,
-        highestBid: null,
-        highestBidder: null,
-        isInstantBuy: null,
-        durationInDays: null,
-        instantBuyPrice: null,
-        bidders: null,
-        isExpired: null,
-      };
+    } catch (e) {
+      if (e.reason === 'missing revert data in call exception') {
+        auctionDetails = {
+          duration: null,
+          startingPrice: null,
+          highestBid: null,
+          highestBidder: null,
+          isInstantBuy: null,
+          durationInDays: null,
+          instantBuyPrice: null,
+          bidders: null,
+          isExpired: null,
+        };
+      } else {
+        throw new Error('Unknown API Error Occurred');
+      }
     }
 
     return auctionDetails;

@@ -6,7 +6,7 @@ export class PromoEvent {
   promoName: string;
 
   @Field((type) => Int)
-  promoId: bigint;
+  promoId: number;
 
   @Field((type) => String)
   startTime: bigint;
@@ -24,10 +24,10 @@ export class PromoEvent {
   isPromoClosed: boolean;
 
   @Field((type) => Int)
-  ticketsClaimed: bigint;
+  ticketsClaimed: number;
 
   @Field((type) => Int)
-  ticketsRedeemed: bigint;
+  ticketsRedeemed: number;
 
   @Field((type) => Float)
   lengthInDays: number;
