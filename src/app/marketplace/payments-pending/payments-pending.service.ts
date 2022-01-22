@@ -14,6 +14,8 @@ export class PaymentsPendingService {
       ).toString(),
     };
 
+    //todo:parse as eth values
+
     return paymentsPending;
   }
 }

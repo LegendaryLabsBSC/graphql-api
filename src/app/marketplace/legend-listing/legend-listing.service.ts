@@ -11,7 +11,7 @@ export class LegendListingService {
     private readonly offerDetailsService: OfferDetailsService,
   ) {}
 
-  parseData(data: LegendListing): LegendListing {
+  parseData(data: any): LegendListing {
     const parseStatus = (status: number): string => {
       const listingService: any = {
         0: null,
@@ -25,16 +25,18 @@ export class LegendListingService {
 
     const legendListing: any = {};
 
-    const keys = Object.keys(data).slice(10);
-    const values = `${data}`.split(',');
+    legendListing['listingId'] = Number(data.listingId);
+    legendListing['createdAt'] = data.createdAt.toString();
+    legendListing['nftContract'] = data.nftContract;
+    legendListing['legendId'] = Number(data.legendId);
+    legendListing['seller'] = data.seller;
+    legendListing['buyer'] = data.buyer;
+    legendListing['price'] = data.price.toString();
+    legendListing['isAuction'] = data.isAuction;
+    legendListing['isOffer'] = data.isOffer;
+    legendListing['status'] = parseStatus(data.status);
 
-    keys.forEach((key: string, index) => {
-      legendListing[key] = values[index];
-    });
-
-    legendListing.status = parseStatus(legendListing.status);
-
-    // legendListing['lengthInDays'] =
+    // legendListing['lengthInDays'] = //todo: calendar date creation-time
     //   (parseInt(legendListing.expireTime) - parseInt(legendListing.startTime)) /
     //   86400; // One day in seconds
 

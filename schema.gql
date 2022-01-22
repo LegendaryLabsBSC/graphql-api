@@ -98,15 +98,15 @@ type OfferDetails {
 }
 
 type LegendListing {
-  listingId: String!
+  listingId: Int!
   createdAt: String!
   nftContract: String!
-  legendId: String!
+  legendId: Int!
   seller: String!
   buyer: String!
   price: String!
-  isAuction: String!
-  isOffer: String!
+  isAuction: Boolean!
+  isOffer: Boolean!
   status: String
   auctionDetails: AuctionDetails!
   offerDetails: OfferDetails!

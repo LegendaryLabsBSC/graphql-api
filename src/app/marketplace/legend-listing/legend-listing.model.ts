@@ -1,11 +1,11 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { AuctionDetails } from '../auction-details/auction-details.model';
 import { OfferDetails } from '../offer-details/offer-details.model';
 
 @ObjectType()
 export class LegendListing {
-  @Field((type) => String)
-  listingId: bigint;
+  @Field((type) => Int)
+  listingId: number;
 
   @Field((type) => String)
   createdAt: bigint;
@@ -13,8 +13,8 @@ export class LegendListing {
   @Field()
   nftContract: string;
 
-  @Field((type) => String)
-  legendId: bigint;
+  @Field((type) => Int)
+  legendId: number;
 
   @Field()
   seller: string;
@@ -25,10 +25,10 @@ export class LegendListing {
   @Field((type) => String)
   price: bigint;
 
-  @Field((type) => String)
+  @Field()
   isAuction: boolean;
 
-  @Field((type) => String)
+  @Field()
   isOffer: boolean;
 
   @Field((type) => String, { nullable: true })
