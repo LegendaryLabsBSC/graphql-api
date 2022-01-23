@@ -14,7 +14,7 @@ import { BlendingCostModule } from './blending-cost/blending-cost.module';
 import { TotalNFTSupplyModule } from './total-nft-supply/total-nft-supply.module';
 import { OwnerOfLegendModule } from './owner-of-legend/owner-of-legend.module';
 import { LegendOffspringModule } from './legend-offspring/legend-offspring.module';
-
+import { BalanceOfModule } from './balance-of/balance-of.module';
 @Module({
   providers: [NFTService, NFTResolver],
   imports: [
@@ -30,7 +30,8 @@ import { LegendOffspringModule } from './legend-offspring/legend-offspring.modul
     BlendingCostModule,
     TotalNFTSupplyModule,
     OwnerOfLegendModule,
-    LegendOffspringModule
+    LegendOffspringModule,
+    BalanceOfModule,
   ],
 })
 export class NFTModule {}

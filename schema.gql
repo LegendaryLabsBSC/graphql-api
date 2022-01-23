@@ -66,9 +66,9 @@ type TokensPending {
 }
 
 type MatchingCounts {
-  matchingIds: String!
-  matchingsClosed: String!
-  matchingsCancelled: String!
+  matchingIds: Int!
+  matchingsClosed: Int!
+  matchingsCancelled: Int!
 }
 
 type MarketplaceRules {
@@ -248,6 +248,10 @@ type LegendOffspring {
   offspringIds: [Int!]!
 }
 
+type NFTBalanceOf {
+  balance: Int!
+}
+
 type Query {
   getHello: String!
   childContracts: ChildContracts!
@@ -273,6 +277,7 @@ type Query {
   totalNFTSupply: TotalNFTSupply!
   ownerOfLegend(id: String!): OwnerOfLegend!
   legendOffspring(id: String!): LegendOffspring!
+  NFTbalanceOf(address: String!): NFTBalanceOf!
   LGNDbalanceOf(address: String!): BalanceOf!
   tokenDetails: TokenDetails!
   rejuvenationRules: RejuvenationRules!

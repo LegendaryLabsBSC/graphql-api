@@ -8,9 +8,9 @@ export class MatchingCountsService {
     const countsData: bigint[] = await lab.matching.fetchMatchingCounts();
 
     const matchingCounts: MatchingCounts = {
-      matchingIds: countsData[0].toString(),
-      matchingsClosed: countsData[1].toString(),
-      matchingsCancelled: countsData[2].toString(),
+      matchingIds: Number(countsData[0]),
+      matchingsClosed: Number(countsData[1]),
+      matchingsCancelled: Number(countsData[2]),
     };
 
     return matchingCounts;

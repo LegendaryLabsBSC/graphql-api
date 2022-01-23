@@ -11,6 +11,8 @@ export class TokensPendingService {
       amount: (await lab.matching.fetchLegendMatching()).toString(),
     };
 
+     //todo:parse as eth values
+
     return tokensPending;
   }
 }
