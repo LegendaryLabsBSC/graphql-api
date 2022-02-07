@@ -79,6 +79,45 @@ type MarketplaceRules {
   auctionDurations: [String!]!
 }
 
+type LegendMetadata {
+  id: Int!
+  season: String!
+  prefix: String!
+  postfix: String!
+  parent1: Int!
+  parent2: Int!
+  birthday: String!
+  blendingInstancesUsed: Int!
+  totalOffspring: Int!
+  legendCreator: String!
+  isLegendary: Boolean!
+  isHatched: Boolean!
+  isDestroyed: Boolean!
+}
+
+type LegendURI {
+  id: Int!
+  image: String!
+  payload: String
+}
+
+type LegendNFT {
+  id: Int!
+  image: String!
+  season: String!
+  prefix: String!
+  postfix: String!
+  parent1: Int!
+  parent2: Int!
+  birthday: String!
+  blendingInstancesUsed: Int!
+  totalOffspring: Int!
+  legendCreator: String!
+  isLegendary: Boolean!
+  isHatched: Boolean!
+  isDestroyed: Boolean!
+}
+
 type AuctionDetails {
   duration: String
   startingPrice: String
@@ -102,6 +141,7 @@ type LegendListing {
   createdAt: String!
   nftContract: String!
   legendId: Int!
+  legendDetails: LegendNFT!
   seller: String!
   buyer: String!
   price: String!
@@ -161,45 +201,6 @@ type BlendingRules {
   blendingLimit: Int!
   baseBlendingCost: Int!
   incubationPeriod: Int!
-}
-
-type LegendMetadata {
-  id: Int!
-  season: String!
-  prefix: String!
-  postfix: String!
-  parent1: Int!
-  parent2: Int!
-  birthday: String!
-  blendingInstancesUsed: Int!
-  totalOffspring: Int!
-  legendCreator: String!
-  isLegendary: Boolean!
-  isHatched: Boolean!
-  isDestroyed: Boolean!
-}
-
-type LegendURI {
-  id: Int!
-  image: String!
-  payload: String
-}
-
-type LegendNFT {
-  id: Int!
-  image: String!
-  season: String!
-  prefix: String!
-  postfix: String!
-  parent1: Int!
-  parent2: Int!
-  birthday: String!
-  blendingInstancesUsed: Int!
-  totalOffspring: Int!
-  legendCreator: String!
-  isLegendary: Boolean!
-  isHatched: Boolean!
-  isDestroyed: Boolean!
 }
 
 type IncubationViews {

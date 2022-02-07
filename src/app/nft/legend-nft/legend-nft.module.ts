@@ -11,5 +11,6 @@ import { LegendURIService } from '../legend-uri/legend-uri.service';
     LegendMetadataService,
     LegendURIService,
   ],
+  exports:[LegendNFTService]
 })
 export class LegendNFTModule {}

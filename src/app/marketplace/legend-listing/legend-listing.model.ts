@@ -1,4 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { LegendNFT } from 'src/app/nft/legend-nft/legend-nft.model';
 import { AuctionDetails } from '../auction-details/auction-details.model';
 import { OfferDetails } from '../offer-details/offer-details.model';
 
@@ -15,6 +16,9 @@ export class LegendListing {
 
   @Field((type) => Int)
   legendId: number;
+
+  @Field()
+  legendDetails: LegendNFT
 
   @Field()
   seller: string;
