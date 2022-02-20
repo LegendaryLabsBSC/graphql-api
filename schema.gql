@@ -116,6 +116,7 @@ type LegendNFT {
   isLegendary: Boolean!
   isHatched: Boolean!
   isDestroyed: Boolean!
+  ownerOf: String!
 }
 
 type AuctionDetails {
@@ -150,6 +151,38 @@ type LegendListing {
   status: String
   auctionDetails: AuctionDetails!
   offerDetails: OfferDetails!
+}
+
+type PageData {
+  count: Float!
+  limit: Float!
+  offset: Float!
+}
+
+type LegendNFTResponse {
+  page: LegendNFTConnection!
+  pageData: PageData
+}
+
+type LegendNFTConnection {
+  edges: [LegendNFTEdge!]
+  pageInfo: LegendNFTPageInfo
+}
+
+type LegendNFTEdge {
+  cursor: String
+  node: LegendNFT
+}
+
+type LegendNFTPageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type OwnerOfLegend {
+  address: String!
 }
 
 type PaymentsPending {
@@ -241,16 +274,19 @@ type TotalNFTSupply {
   total: Int!
 }
 
-type OwnerOfLegend {
-  address: String!
-}
-
 type LegendOffspring {
   offspringIds: [Int!]!
 }
 
 type NFTBalanceOf {
   balance: Int!
+}
+
+type PinataResponse {
+  IpfsHash: String!
+  PinSize: Int!
+  Timestamp: String!
+  isDuplicate: Boolean
 }
 
 type Query {
@@ -267,8 +303,22 @@ type Query {
   legendMetadata(id: String!): LegendMetadata!
   legendURI(id: String!): LegendURI!
   legendNFT(id: String!): LegendNFT!
-  allLegendNFTs(filter: String!): [LegendNFT!]!
+  allLegendNFTs(
+    """Paginate before opaque cursor"""
+    before: String
+
+    """Paginate after opaque cursor"""
+    after: String
+
+    """Paginate first"""
+    first: Float
+
+    """Paginate last"""
+    last: Float
+  ): LegendNFTResponse!
+  allLegendNFTs1(filter: String!): [LegendNFT!]!
   legendNFTsByOwner(address: String!): [LegendNFT!]!
+  ownerOfLegend(id: String!): OwnerOfLegend!
   incubationViews: IncubationViews!
   isHatchable(id: String!): IsHatchable!
   isBlendable(id: String!): IsBlendable!
@@ -276,7 +326,6 @@ type Query {
   blendingSlotsUsed(id: String!): BlendingSlotsUsed!
   blendingCost(p2: String, p1: String!): BlendingCost!
   totalNFTSupply: TotalNFTSupply!
-  ownerOfLegend(id: String!): OwnerOfLegend!
   legendOffspring(id: String!): LegendOffspring!
   NFTbalanceOf(address: String!): NFTBalanceOf!
   LGNDbalanceOf(address: String!): BalanceOf!
@@ -286,7 +335,7 @@ type Query {
   rejuvenationProgress(id: String!): RejuvenationProgress!
   marketplaceRules: MarketplaceRules!
   legendListing(id: String!): LegendListing!
-  allLegendListings(status: String, filter: String!): [LegendListing!]!
+  allLegendListings(limit: Float, offset: Float, status: String, filter: String!): [LegendListing!]!
   auctionDetails(id: String!): AuctionDetails!
   offerDetails(id: String!): OfferDetails!
   paymentsPending(address: String!): PaymentsPending!
@@ -294,4 +343,13 @@ type Query {
   legendMatching(id: String!): LegendMatching!
   tokensPending: TokensPending!
   matchingCounts: MatchingCounts!
+}
+
+type Mutation {
+  pinJSONtoIPFS(pinataReq: PinataRequest!): PinataResponse!
+}
+
+input PinataRequest {
+  pinName: String!
+  pinContent: String!
 }

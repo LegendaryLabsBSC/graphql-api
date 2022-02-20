@@ -15,6 +15,7 @@ import { MarketplaceModule } from './marketplace/marketplace.module';
 import { RejuModule } from './reju/reju.module';
 import { TokenModule } from './token/token.module';
 import { NFTModule } from './nft/nft.module';
+import { IPFSModule } from './ipfs/ipfs.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { NFTModule } from './nft/nft.module';
     RejuModule,
     MarketplaceModule,
     MatchingModule,
+    IPFSModule,
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
       playground: true,
