@@ -25,7 +25,7 @@ export class LegendNFTService {
     return legendNFT;
   }
 
-  //todo: ! make filters ; all ; alive ; legendary ; destoryed ;; etc
+  // //todo: ! make filters ; all ; alive ; legendary ; destoryed ;; etc
   async fetchAllLegendNFTs(filter: string): Promise<LegendNFT[]> {
     const allLegends: LegendNFT[] = [];
 

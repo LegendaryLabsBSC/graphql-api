@@ -1,10 +1,14 @@
-import { Resolver, Query, Args } from '@nestjs/graphql';
+import { Resolver, Query, Args, ResolveField, Parent } from '@nestjs/graphql';
 import { LegendNFTService } from './legend-nft.service';
 import { LegendNFT } from './legend-nft.model';
-// all active destroyed
-@Resolver()
+import { OwnerOfLegendService } from '../owner-of-legend/owner-of-legend.service';
+
+@Resolver((of) => LegendNFT)
 export class LegendNFTResolver {
-  constructor(private readonly legendNFTService: LegendNFTService) {}
+  constructor(
+    private readonly legendNFTService: LegendNFTService,
+    private readonly ownerOfLegendService: OwnerOfLegendService,
+  ) {}
 
   @Query((returns) => LegendNFT)
   async legendNFT(@Args('id') id: string) {
@@ -19,5 +23,12 @@ export class LegendNFTResolver {
   @Query((returns) => [LegendNFT])
   async legendNFTsByOwner(@Args('address') address: string) {
     return await this.legendNFTService.fetchLegendNFTsByOwner(address);
+  }
+
+  @ResolveField()
+  async ownerOf(@Parent() legendNFT: LegendNFT) {
+    const { id } = legendNFT;
+    return (await this.ownerOfLegendService.fetchOwnerOfLegend(`${id}`))
+      .address;
   }
 }

@@ -153,34 +153,6 @@ type LegendListing {
   offerDetails: OfferDetails!
 }
 
-type PageData {
-  count: Float!
-  limit: Float!
-  offset: Float!
-}
-
-type LegendNFTResponse {
-  page: LegendNFTConnection!
-  pageData: PageData
-}
-
-type LegendNFTConnection {
-  edges: [LegendNFTEdge!]
-  pageInfo: LegendNFTPageInfo
-}
-
-type LegendNFTEdge {
-  cursor: String
-  node: LegendNFT
-}
-
-type LegendNFTPageInfo {
-  startCursor: String
-  endCursor: String
-  hasPreviousPage: Boolean!
-  hasNextPage: Boolean!
-}
-
 type OwnerOfLegend {
   address: String!
 }
@@ -303,20 +275,7 @@ type Query {
   legendMetadata(id: String!): LegendMetadata!
   legendURI(id: String!): LegendURI!
   legendNFT(id: String!): LegendNFT!
-  allLegendNFTs(
-    """Paginate before opaque cursor"""
-    before: String
-
-    """Paginate after opaque cursor"""
-    after: String
-
-    """Paginate first"""
-    first: Float
-
-    """Paginate last"""
-    last: Float
-  ): LegendNFTResponse!
-  allLegendNFTs1(filter: String!): [LegendNFT!]!
+  allLegendNFTs(filter: String!): [LegendNFT!]!
   legendNFTsByOwner(address: String!): [LegendNFT!]!
   ownerOfLegend(id: String!): OwnerOfLegend!
   incubationViews: IncubationViews!
@@ -335,7 +294,7 @@ type Query {
   rejuvenationProgress(id: String!): RejuvenationProgress!
   marketplaceRules: MarketplaceRules!
   legendListing(id: String!): LegendListing!
-  allLegendListings(limit: Float, offset: Float, status: String, filter: String!): [LegendListing!]!
+  allLegendListings(status: String, filter: String!): [LegendListing!]!
   auctionDetails(id: String!): AuctionDetails!
   offerDetails(id: String!): OfferDetails!
   paymentsPending(address: String!): PaymentsPending!

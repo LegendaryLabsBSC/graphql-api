@@ -20,9 +20,12 @@ import {
 
 import { ethers, Contract } from 'ethers';
 
-const provider = new ethers.providers.JsonRpcProvider(
-  'https://data-seed-prebsc-2-s2.binance.org:8545/',
-);
+// const url =
+//   'https://apis-sj.ankr.com/6f4fab5d862140569737a431eb28e1ad/7eb7caa0231f32a5cc5bbcb5dbeab631/binance/full/test';
+
+const url = 'https://data-seed-prebsc-2-s2.binance.org:8545/';
+
+const provider = new ethers.providers.JsonRpcProvider(url);
 
 const admin: Contract = new ethers.Contract(
   legendsLaboratory,

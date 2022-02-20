@@ -4,7 +4,7 @@ import { LegendListing } from './legend-listing.model';
 import { LegendNFTService } from 'src/app/nft/legend-nft/legend-nft.service';
 import { LegendNFT } from 'src/app/nft/legend-nft/legend-nft.model';
 
-@Resolver(of => LegendListing)
+@Resolver((of) => LegendListing)
 export class LegendListingResolver {
   constructor(
     private readonly legendListingService: LegendListingService,
@@ -21,11 +21,9 @@ export class LegendListingResolver {
     @Args('filter') filter: string,
     @Args('status', { nullable: true }) status?: string,
   ) {
-    return (
-      (await this.legendListingService.fetchAllLegendListings(
-        filter,
-        status,
-      )) || []
+    return await this.legendListingService.fetchAllLegendListings(
+      filter,
+      status,
     );
   }
 
