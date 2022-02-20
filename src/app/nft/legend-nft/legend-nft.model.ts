@@ -7,4 +7,7 @@ import { LegendURI } from '../legend-uri/legend-uri.model';
 export class LegendNFT extends IntersectionType(
   OmitType(LegendURI, ['payload'] as const),
   OmitType(LegendMetadata, ['id'] as const),
-) {}
+) {
+  @Field()
+  ownerOf?: string;
+}

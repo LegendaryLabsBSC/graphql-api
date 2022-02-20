@@ -4,5 +4,6 @@ import { OwnerOfLegendResolver } from './owner-of-legend.resolver';
 
 @Module({
   providers: [OwnerOfLegendService, OwnerOfLegendResolver],
+  exports: [OwnerOfLegendService],
 })
 export class OwnerOfLegendModule {}
