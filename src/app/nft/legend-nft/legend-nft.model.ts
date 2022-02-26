@@ -12,5 +12,5 @@ export class LegendNFT extends IntersectionType(
   ownerOf?: string;
 
   @Field()
-  isHatchable?: string;
+  isHatchable?: boolean;
 }

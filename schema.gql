@@ -117,7 +117,7 @@ type LegendNFT {
   isHatched: Boolean!
   isDestroyed: Boolean!
   ownerOf: String!
-  isHatchable: String!
+  isHatchable: Boolean!
 }
 
 type AuctionDetails {
