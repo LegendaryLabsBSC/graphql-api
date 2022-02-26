@@ -1,4 +1,4 @@
-import { Args, Int, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Int, Mutation, Resolver, Query } from '@nestjs/graphql';
 import { PinataService } from './pinata.service';
 import { PinataResponse } from './models/pinata-response.model';
 import { PinataRequest } from './models/pinata-request.model';
@@ -13,5 +13,11 @@ export class PinataResolver {
     pinataReq: PinataRequest,
   ) {
     return this.pinataService.pinJSONtoIPFS(pinataReq);
+  }
+
+  @Query((returns) => PinataResponse)
+  async readPinFromPinata(@Args('id') id: string) {
+    this.pinataService.readPinFromPinata(id)
+    return;
   }
 }

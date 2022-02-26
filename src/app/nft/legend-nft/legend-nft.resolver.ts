@@ -2,12 +2,14 @@ import { Resolver, Query, Args, ResolveField, Parent } from '@nestjs/graphql';
 import { LegendNFTService } from './legend-nft.service';
 import { LegendNFT } from './legend-nft.model';
 import { OwnerOfLegendService } from '../owner-of-legend/owner-of-legend.service';
+import { IsHatchableService } from '../is-hatchable/is-hatchable.service';
 
 @Resolver((of) => LegendNFT)
 export class LegendNFTResolver {
   constructor(
     private readonly legendNFTService: LegendNFTService,
     private readonly ownerOfLegendService: OwnerOfLegendService,
+    private readonly isHatchableService: IsHatchableService,
   ) {}
 
   @Query((returns) => LegendNFT)
@@ -28,7 +30,21 @@ export class LegendNFTResolver {
   @ResolveField()
   async ownerOf(@Parent() legendNFT: LegendNFT) {
     const { id } = legendNFT;
-    return (await this.ownerOfLegendService.fetchOwnerOfLegend(`${id}`))
-      .address;
+
+    const { address } = await this.ownerOfLegendService.fetchOwnerOfLegend(
+      `${id}`,
+    );
+    return address;
+  }
+
+  @ResolveField()
+  async isHatchable(@Parent() legendNFT: LegendNFT) {
+    const { id } = legendNFT;
+
+    const { hatchable } = await this.isHatchableService.fetchIsHatchable(
+      `${id}`,
+    );
+
+    return hatchable;
   }
 }

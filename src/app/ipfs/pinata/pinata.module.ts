@@ -6,5 +6,6 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   providers: [PinataService, PinataResolver],
   imports: [HttpModule, ConfigModule.forRoot()],
+  exports: [PinataService],
 })
 export class PinataModule {}
