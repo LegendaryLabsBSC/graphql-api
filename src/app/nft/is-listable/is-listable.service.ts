@@ -5,8 +5,11 @@ import { contractLab as lab } from 'src/contract-lab/contract-lab.service';
 @Injectable()
 export class IsListableService {
   async fetchIsListable(id: string, address: string): Promise<IsListable> {
-    if ((await lab.admin.isHatched(id)) === false) {
-      const isListable: IsListable = {
+    let isListable: IsListable;
+
+    const isHatched = await lab.admin.isHatched(id);
+    if (isHatched === false) {
+      isListable = {
         listable: false,
         unableReason: 'Legend NFT Not Hatched',
       };
@@ -14,20 +17,19 @@ export class IsListableService {
       return isListable;
     }
 
-    let listable: boolean;
-    let unableReason: string;
+    const legendOwner = await lab.nft.ownerOf(id);
+    if (legendOwner !== address) {
+      isListable = {
+        listable: false,
+        unableReason:
+          'Unauthorized Caller: Caller is not owner of the Legend NFT.',
+      };
 
-    if ((await lab.nft.ownerOf(id)) === address) {
-      listable = true;
-    } else {
-      listable = false;
-      unableReason =
-        'Unauthorized Caller: Caller is not owner of the Legend NFT.';
+      return isListable;
     }
 
-    const isListable: IsListable = {
-      listable: listable,
-      unableReason: unableReason,
+    isListable = {
+      listable: true,
     };
 
     return isListable;
