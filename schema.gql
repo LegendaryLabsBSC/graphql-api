@@ -118,6 +118,7 @@ type LegendNFT {
   isDestroyed: Boolean!
   ownerOf: String!
   isHatchable: Boolean!
+  isBlendable: Boolean!
 }
 
 type AuctionDetails {
@@ -160,6 +161,11 @@ type OwnerOfLegend {
 
 type IsHatchable {
   hatchable: Boolean!
+  unableReason: String
+}
+
+type IsBlendable {
+  blendable: Boolean!
   unableReason: String
 }
 
@@ -222,11 +228,6 @@ type IncubationViews {
   view5: String!
 }
 
-type IsBlendable {
-  blendable: Boolean!
-  unableReason: String
-}
-
 type IsListable {
   listable: Boolean!
   unableReason: String
@@ -280,8 +281,8 @@ type Query {
   legendNFTsByOwner(address: String!): [LegendNFT!]!
   ownerOfLegend(id: String!): OwnerOfLegend!
   isHatchable(id: String!): IsHatchable!
-  incubationViews: IncubationViews!
   isBlendable(id: String!): IsBlendable!
+  incubationViews: IncubationViews!
   isListable(address: String!, id: String!): IsListable!
   blendingSlotsUsed(id: String!): BlendingSlotsUsed!
   blendingCost(p2: String, p1: String!): BlendingCost!

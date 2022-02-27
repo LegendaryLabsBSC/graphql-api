@@ -3,6 +3,7 @@ import { LegendNFTService } from './legend-nft.service';
 import { LegendNFT } from './legend-nft.model';
 import { OwnerOfLegendService } from '../owner-of-legend/owner-of-legend.service';
 import { IsHatchableService } from '../is-hatchable/is-hatchable.service';
+import { IsBlendableService } from '../is-blendable/is-blendable.service';
 
 @Resolver((of) => LegendNFT)
 export class LegendNFTResolver {
@@ -10,6 +11,7 @@ export class LegendNFTResolver {
     private readonly legendNFTService: LegendNFTService,
     private readonly ownerOfLegendService: OwnerOfLegendService,
     private readonly isHatchableService: IsHatchableService,
+    private readonly isBlendableService: IsBlendableService,
   ) {}
 
   @Query((returns) => LegendNFT)
@@ -46,5 +48,16 @@ export class LegendNFTResolver {
     );
 
     return hatchable;
+  }
+
+  @ResolveField()
+  async isBlendable(@Parent() legendNFT: LegendNFT) {
+    const { id } = legendNFT;
+
+    const { blendable } = await this.isBlendableService.fetchIsBlendable(
+      `${id}`,
+    );
+
+    return blendable;
   }
 }

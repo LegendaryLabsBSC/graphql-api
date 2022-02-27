@@ -5,5 +5,6 @@ import { IsBlendableResolver } from './is-blendable.resolver';
 
 @Module({
   providers: [IsBlendableService, IsBlendableResolver, BlendingRulesService],
+  exports: [IsBlendableService]
 })
 export class IsBlendableModule {}

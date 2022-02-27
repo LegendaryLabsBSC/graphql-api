@@ -13,4 +13,7 @@ export class LegendNFT extends IntersectionType(
 
   @Field()
   isHatchable?: boolean;
+
+  @Field()
+  isBlendable?: boolean;
 }

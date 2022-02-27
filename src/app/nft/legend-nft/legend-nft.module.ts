@@ -5,6 +5,7 @@ import { LegendMetadataService } from '../legend-metadata/legend-metadata.servic
 import { LegendURIService } from '../legend-uri/legend-uri.service';
 import { OwnerOfLegendModule } from '../owner-of-legend/owner-of-legend.module';
 import { IsHatchableModule } from '../is-hatchable/is-hatchable.module';
+import { IsBlendableModule } from '../is-blendable/is-blendable.module';
 
 @Module({
   providers: [
@@ -13,7 +14,7 @@ import { IsHatchableModule } from '../is-hatchable/is-hatchable.module';
     LegendMetadataService,
     LegendURIService,
   ],
-  imports: [OwnerOfLegendModule, IsHatchableModule],
+  imports: [OwnerOfLegendModule, IsHatchableModule, IsBlendableModule],
   exports: [LegendNFTService],
 })
 export class LegendNFTModule {}
